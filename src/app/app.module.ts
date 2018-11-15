@@ -5,6 +5,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { ContentComponent } from './content/content.component';
 import { routing } from './app.routing';
 import { ClientesComponent } from './clientes/clientes.component';
 import { AvaliacoesComponent } from './avaliacoes/avaliacoes.component';
+import { MenuComponent } from './header/menu/menu.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,8 @@ import { AvaliacoesComponent } from './avaliacoes/avaliacoes.component';
     HeaderComponent,
     ContentComponent,
     ClientesComponent,
-    AvaliacoesComponent
+    AvaliacoesComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +35,7 @@ import { AvaliacoesComponent } from './avaliacoes/avaliacoes.component';
     MatIconModule,
     MatSidenavModule,
     MatButtonModule,
+    MatMenuModule,
     routing
   ],
   providers: [],
