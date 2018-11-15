@@ -1,7 +1,7 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <button type="button" mat-button (click)="HeaderComponent.drawer.toggle()">
-        <mat-icon class="example-icon">menu</mat-icon>
+    <button type="button" mat-button (click)="drawer.toggle()">
+      <mat-icon class="example-icon">menu</mat-icon>
     </button>
     <span></span>
     <span class="example-spacer"></span>
@@ -9,7 +9,7 @@
   </mat-toolbar-row>
 </mat-toolbar>
 
-<!-- <mat-drawer-container class="example-container" autosize>
+<mat-drawer-container class="example-container" autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <p>Auto-resizing sidenav</p>
     <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
@@ -19,9 +19,7 @@
   </mat-drawer>
 
   <div class="example-sidenav-content">
-    <!-- aqui vai o conteúdo da navegação 
+    <!-- aqui vai o conteúdo da navegação -->
   </div>
 
-</mat-drawer-container> -->
-
-<app-header></app-header>
+</mat-drawer-container>
