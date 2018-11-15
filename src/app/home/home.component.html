@@ -1,17 +1,17 @@
 <app-header (click)="drawer.toggle()"></app-header>
+<!-- <app-header></app-header> -->
 
-<mat-drawer-container class="container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side">
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
+<mat-drawer-container class="container" autosize >
+  <mat-drawer #drawer class="sidenav" mode="side">    
+    <button mat-raised-button (click)="itemSelected1('Clientes')" routerLink="clientes">
       Clientes
     </button>
     <br>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
+    <button mat-raised-button (click)="itemSelected1('Avaliações')" routerLink="avaliacoes">
       Avaliações
     </button>
   </mat-drawer>
-
   <app-content></app-content>
-
 </mat-drawer-container>
+
+

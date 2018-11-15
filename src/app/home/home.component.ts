@@ -10,9 +10,18 @@ import { AppComponent } from '../app.component';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  showFiller = false;
+  ativo = true;
+
+  constructor(
+    private appComponent: AppComponent
+  ) { }
 
   ngOnInit() {
+  }
+
+  itemSelected1(opcao: string) {
+    return this.appComponent.titulo === opcao;
   }
 
 }
