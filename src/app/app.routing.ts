@@ -2,14 +2,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { Component } from '@angular/core';
 import { HomeComponent } from './home/home.component';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
-import { Item1Component } from './item1/item1.component';
-import { Item2Component } from './item2/item2.component';
+import { ClientesComponent } from './clientes/clientes.component';
+import { AvaliacoesComponent } from './avaliacoes/avaliacoes.component';
 
 const APP_ROUTES: Routes = [
     {
         path: 'home', component: HomeComponent, children: [
-            { path: 'item1', component: Item1Component },
-            { path: 'item2', component: Item2Component }]
+            { path: 'clientes', component: ClientesComponent },
+            { path: 'avaliacoes', component: AvaliacoesComponent }]
     }
 ];
 
