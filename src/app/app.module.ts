@@ -14,6 +14,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { ContentComponent } from './content/content.component';
 import { Item1Component } from './item1/item1.component';
 import { Item2Component } from './item2/item2.component';
+import { routing } from './app.routing';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { Item2Component } from './item2/item2.component';
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
