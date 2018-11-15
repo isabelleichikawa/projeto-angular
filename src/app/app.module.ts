@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
+// import { SidenavComponent } from './sidenav/sidenav.component';
 import { ContentComponent } from './content/content.component';
 import { Item1Component } from './item1/item1.component';
 import { Item2Component } from './item2/item2.component';
@@ -21,7 +21,7 @@ import { routing } from './app.routing';
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    SidenavComponent,
+    // SidenavComponent,
     ContentComponent,
     Item1Component,
     Item2Component

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
+import { MatButton, MatDrawer } from '@angular/material';
+import { AppComponent } from '../app.component';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +10,19 @@ import { HeaderComponent } from '../header/header.component';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private appComponent: AppComponent
+  ) { }
 
   ngOnInit() {
+  }
+
+  changeTitle(title: string) {
+    this.appComponent.titulo = title;
+  }
+
+  itemSelected1(item: string) {
+    return this.appComponent.titulo === item;
   }
 
 }
