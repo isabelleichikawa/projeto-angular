@@ -3,11 +3,11 @@
 
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side" opened={{ativo}}>
-    <button mat-raised-button routerLink="clientes">
+    <button mat-raised-button (click)="itemSelected1('Clientes')" routerLink="clientes">
       <p>Clientes</p>
     </button>
     <br>
-    <button mat-raised-button routerLink="avaliacoes">
+    <button mat-raised-button (click)="itemSelected1('Avaliações')" routerLink="avaliacoes">
       <p>Avaliações</p>
     </button>
   </mat-drawer>
