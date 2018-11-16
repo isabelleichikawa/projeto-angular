@@ -1,6 +1,13 @@
 <!-- <button mat-button [matMenuTriggerFor]="menu">Menu</button> -->
-<mat-icon [matMenuTriggerFor]="menu" class="icon">person
+<!-- <mat-icon [matMenuTriggerFor]="menu" class="icon">person
   <mat-menu #menu="matMenu">
-    <button mat-menu-item><mat-icon class="icon">close</mat-icon>Sair</button>
+    <!-- <button mat-menu-item><mat-icon class="icon">close</mat-icon>Sair</button>
+    <button mat-icon-button class="icon">close</button>
   </mat-menu>
-</mat-icon>
+</mat-icon> -->
+
+<button mat-icon-button=person [matMenuTriggerFor]="menu"><mat-icon>person</mat-icon>
+  <mat-menu #menu="matMenu">
+    <button mat-icon-button><mat-icon>close</mat-icon>Close</button>
+  </mat-menu>
+</button>
