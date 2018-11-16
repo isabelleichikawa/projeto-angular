@@ -1,7 +1,8 @@
-<app-header (click)="drawer.toggle()"></app-header>
+<!-- <app-header (click)="drawer.toggle()"></app-header> -->
+<app-header></app-header>
 
 <mat-drawer-container class="container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side" opened="true">
+  <mat-drawer #drawer class="sidenav" mode="side" opened={{ativo}}>
     <button mat-raised-button routerLink="clientes">
       <p>Clientes</p>
     </button>

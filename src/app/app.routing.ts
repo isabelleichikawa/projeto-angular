@@ -7,9 +7,6 @@ import { AvaliacoesComponent } from './avaliacoes/avaliacoes.component';
 
 const APP_ROUTES: Routes = [
     {
-        path: '', component: HomeComponent
-    },
-    {
         path: 'home', component: HomeComponent, children: [
             { path: 'clientes', component: ClientesComponent },
             { path: 'avaliacoes', component: AvaliacoesComponent }]
