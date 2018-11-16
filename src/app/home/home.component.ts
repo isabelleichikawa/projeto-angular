@@ -26,8 +26,8 @@ export class HomeComponent implements OnInit {
         this.isAvaliacoesActive = !this.isClientesActive;
       }
     }
-    console.log('Cliente ' + this.isClientesActive);
-    console.log('Avaliações ' + this.isAvaliacoesActive);
+    // console.log('Cliente ' + this.isClientesActive);
+    // console.log('Avaliações ' + this.isAvaliacoesActive);
   }
 
   avaliacoesActive(item: String) {
@@ -40,8 +40,8 @@ export class HomeComponent implements OnInit {
         this.isClientesActive = !this.isAvaliacoesActive;
       }
     }
-    console.log('Cliente ' + this.isClientesActive);
-    console.log('Avaliações ' + this.isAvaliacoesActive);
+    // console.log('Cliente ' + this.isClientesActive);
+    // console.log('Avaliações ' + this.isAvaliacoesActive);
   }
 
 }
