@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
   }
 
-  status() {
+  openSidenav() {
     this.homeComponent.ativo = !this.homeComponent.ativo;
     // console.log(this.homeComponent.ativo);
   }
