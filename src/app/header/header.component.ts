@@ -16,7 +16,7 @@ export class HeaderComponent implements OnInit {
   }
 
   openSidenav() {
-    this.homeComponent.ativo = !this.homeComponent.ativo;
+    this.homeComponent.isSidenavActive = !this.homeComponent.isSidenavActive;
     // console.log(this.homeComponent.ativo);
   }
 

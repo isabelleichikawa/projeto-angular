@@ -7,16 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  ativo = true;
-  titulo = '';
+  isSidenavActive = true;
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  itemSelected1(opcao: string) {
-    return this.titulo = opcao;
   }
 
 }

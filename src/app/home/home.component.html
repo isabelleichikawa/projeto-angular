@@ -2,13 +2,12 @@
 <app-header></app-header>
 
 <mat-drawer-container class="container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side" opened={{ativo}}>
-    <button mat-raised-button (click)="itemSelected1('Clientes')" routerLink="clientes">
-      <p>Clientes</p>
+  <mat-drawer #drawer class="sidenav" mode="side" opened={{isSidenavActive}}>
+    <button mat-flat-button routerLink="clientes">
+      Clientes
     </button>
-    <br>
-    <button mat-raised-button (click)="itemSelected1('Avaliações')" routerLink="avaliacoes">
-      <p>Avaliações</p>
+    <button mat-flat-button routerLink="avaliacoes">
+      Avaliações
     </button>
   </mat-drawer>
   <router-outlet></router-outlet>
