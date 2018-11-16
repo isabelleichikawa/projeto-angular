@@ -1,19 +1,14 @@
 <app-header (click)="drawer.toggle()"></app-header>
-<!-- <app-header></app-header> -->
 
-<mat-drawer-container class="container" autosize >
-  <mat-drawer #drawer class="sidenav" mode="side">    
-    <button mat-raised-button (click)="itemSelected1('Clientes')" routerLink="clientes">
-      Clientes
+<mat-drawer-container class="container" autosize>
+  <mat-drawer #drawer class="sidenav" mode="side" opened="true">
+    <button mat-raised-button routerLink="clientes">
+      <p>Clientes</p>
     </button>
     <br>
-    <button mat-raised-button (click)="itemSelected1('Avaliações')" routerLink="avaliacoes">
-      Avaliações
+    <button mat-raised-button routerLink="avaliacoes">
+      <p>Avaliações</p>
     </button>
   </mat-drawer>
   <app-content></app-content>
 </mat-drawer-container>
-
-
-
-

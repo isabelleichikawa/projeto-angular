@@ -24,4 +24,8 @@ export class HomeComponent implements OnInit {
     return this.appComponent.titulo === opcao;
   }
 
+  status() {
+    this.ativo = !this.ativo;
+  }
+
 }
