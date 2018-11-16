@@ -25,8 +25,8 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {code: 1, date_ref: '05/2018', customers: 'VWG, ABC, LEMPE', result: 'Meta atingida - 80%'},
-  {code: 2, date_ref: '06/2018', customers: 'K&L, LRM, Calibratec', result: 'Meta dentro da tolerância - 65%'},
-  {code: 3, date_ref: '07/2018', customers: 'Megasteam, ABSI, MAERSK', result: 'Meta não atingida - 30%'}
+  {code: 1, date_ref: '05/2018', customers: 'VWG, ABC, LEMPE, Ambientalis', result: 'Meta atingida - 80%'},
+  {code: 2, date_ref: '06/2018', customers: 'K&L, LRM, Calibratec, Cimeq', result: 'Meta dentro da tolerância - 65%'},
+  {code: 3, date_ref: '07/2018', customers: 'Megasteam, ABSI, MAERSK, Disotax', result: 'Meta não atingida - 30%'}
 ];
 
