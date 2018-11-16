@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
-import { ContentComponent } from './content/content.component';
 import { routing } from './app.routing';
 import { ClientesComponent } from './clientes/clientes.component';
 import { AvaliacoesComponent } from './avaliacoes/avaliacoes.component';
@@ -22,7 +21,6 @@ import { MenuComponent } from './header/menu/menu.component';
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    ContentComponent,
     ClientesComponent,
     AvaliacoesComponent,
     MenuComponent
