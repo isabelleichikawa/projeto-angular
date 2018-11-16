@@ -3,10 +3,10 @@
 
 <mat-drawer-container class="container" autosize>
   <mat-drawer #drawer class="sidenav" mode="side" opened={{isSidenavActive}}>
-    <button mat-flat-button routerLink="clientes" (click)="clientesActive('Clientes')" [style.backgroundColor]="isClientesActive ? 'rgb(180, 179, 179)' : 'white'">
+    <button mat-flat-button routerLink="clientes" (click)="clientesActive('Clientes')" [color]="isClientesActive ? 'accent' : ''">
       Clientes
     </button>
-    <button mat-flat-button routerLink="avaliacoes" (click)="avaliacoesActive('Avaliações')" [style.backgroundColor]="isAvaliacoesActive ? 'rgb(180, 179, 179)' : 'white'">
+    <button mat-flat-button routerLink="avaliacoes" (click)="avaliacoesActive('Avaliações')" [color]="isAvaliacoesActive ? 'accent' : ''">
       Avaliações
     </button>
   </mat-drawer>
