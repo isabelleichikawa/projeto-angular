@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
 
   status() {
     this.homeComponent.ativo = !this.homeComponent.ativo;
-    console.log(this.homeComponent.ativo);
+    // console.log(this.homeComponent.ativo);
   }
 
 }
