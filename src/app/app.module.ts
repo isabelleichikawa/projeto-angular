@@ -22,8 +22,9 @@ import { routing } from './app.routing';
 import { ClientesComponent } from './clientes/clientes.component';
 import { AvaliacoesComponent } from './avaliacoes/avaliacoes.component';
 import { MenuComponent } from './header/menu/menu.component';
-import { NovoClienteComponent } from './novo-cliente/novo-cliente.component';
-import { NovaAvaliacaoComponent } from './nova-avaliacao/nova-avaliacao.component';
+import { NovaAvaliacaoComponent } from './avaliacoes/nova-avaliacao/nova-avaliacao.component';
+import { NovoClienteComponent } from './clientes/novo-cliente/novo-cliente.component';
+
 
 @NgModule({
   declarations: [

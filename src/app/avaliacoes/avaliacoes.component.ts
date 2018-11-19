@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NovaAvaliacaoComponent } from '../nova-avaliacao/nova-avaliacao.component';
 import { MatDialog } from '@angular/material';
+import { NovaAvaliacaoComponent } from './nova-avaliacao/nova-avaliacao.component';
 
 @Component({
   selector: 'app-avaliacoes',

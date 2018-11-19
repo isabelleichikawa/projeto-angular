@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { NovoClienteComponent } from '../novo-cliente/novo-cliente.component';
+import { NovoClienteComponent } from './novo-cliente/novo-cliente.component';
 
 @Component({
   selector: 'app-clientes',

@@ -4,8 +4,8 @@ import { HomeComponent } from './home/home.component';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { ClientesComponent } from './clientes/clientes.component';
 import { AvaliacoesComponent } from './avaliacoes/avaliacoes.component';
-import { NovoClienteComponent } from './novo-cliente/novo-cliente.component';
-import { NovaAvaliacaoComponent } from './nova-avaliacao/nova-avaliacao.component';
+import { NovaAvaliacaoComponent } from './avaliacoes/nova-avaliacao/nova-avaliacao.component';
+import { NovoClienteComponent } from './clientes/novo-cliente/novo-cliente.component';
 
 const APP_ROUTES: Routes = [
     {
