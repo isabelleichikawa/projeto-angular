@@ -20,7 +20,6 @@ export class AvaliacoesComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(NovaAvaliacaoComponent, {
-      width: '250px',
       data: {customer: this.customer, contact_customer: this.contact_customer, date: this.date}
     });
 
