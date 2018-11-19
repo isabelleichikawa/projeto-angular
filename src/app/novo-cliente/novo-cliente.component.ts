@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-novo-cliente',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NovoClienteComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    public dialogRef: MatDialogRef<NovoClienteComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
 
   ngOnInit() {
   }
 
+}
+
+export interface DialogData {
+  // animal: string;
+  // name: string;
+  customer: string;
+  contact_customer: string;
+  date: Date;
 }

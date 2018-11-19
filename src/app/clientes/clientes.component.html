@@ -1,4 +1,7 @@
-<h2>Listagem de Clientes</h2>
+<div class="titulo">
+        <h2>Listagem de Clientes</h2>
+        <button mat-raised-button (click)="openDialog()">Novo Cliente</button>
+</div>
 
 <div class="container mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
