@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatIconModule, MatSelectModule} from '@angular/material';
+import {MatIconModule, MatSelectModule, MatSnackBarModule} from '@angular/material';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
@@ -24,6 +24,9 @@ import { AvaliacoesComponent } from './avaliacoes/avaliacoes.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { NovaAvaliacaoComponent } from './avaliacoes/nova-avaliacao/nova-avaliacao.component';
 import { NovoClienteComponent } from './clientes/novo-cliente/novo-cliente.component';
+import { ClienteService } from './clientes/cliente.service';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpInterceptorProviders } from './http-interceptors';
 
 
 @NgModule({
@@ -39,6 +42,7 @@ import { NovoClienteComponent } from './clientes/novo-cliente/novo-cliente.compo
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
@@ -53,12 +57,16 @@ import { NovoClienteComponent } from './clientes/novo-cliente/novo-cliente.compo
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatSnackBarModule,
     routing
   ],
   exports: [
     MatNativeDateModule
   ],
-  providers: [],
+  providers: [
+    HttpInterceptorProviders,
+    ClienteService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

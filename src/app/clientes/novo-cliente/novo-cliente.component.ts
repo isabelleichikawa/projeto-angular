@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { Cliente } from './cliente.model';
 
 @Component({
   selector: 'app-novo-cliente',
@@ -10,7 +11,7 @@ export class NovoClienteComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<NovoClienteComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: Cliente) {}
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -21,8 +22,4 @@ export class NovoClienteComponent implements OnInit {
 
 }
 
-export interface DialogData {
-  customer: string;
-  contact_customer: string;
-  date: Date;
-}
+

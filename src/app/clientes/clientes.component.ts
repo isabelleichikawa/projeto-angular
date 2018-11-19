@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { NovoClienteComponent } from './novo-cliente/novo-cliente.component';
+import { ClienteService } from './cliente.service';
 
 @Component({
   selector: 'app-clientes',
@@ -16,7 +17,10 @@ export class ClientesComponent implements OnInit {
   contact_customer: string;
   date: Date;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private clienteService: ClienteService
+    ) { }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(NovoClienteComponent, {
@@ -29,6 +33,9 @@ export class ClientesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.clienteService.get().subscribe(result => {
+      console.log(result);
+    });
   }
 
 }
