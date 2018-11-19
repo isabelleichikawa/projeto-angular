@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NovaAvaliacaoComponent } from '../nova-avaliacao/nova-avaliacao.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-avaliacoes',
@@ -10,7 +12,22 @@ export class AvaliacoesComponent implements OnInit {
   displayedColumns = ['code', 'date_ref', 'customers', 'result'];
   dataSource = ELEMENT_DATA;
 
-  constructor() { }
+  customer: string;
+  contact_customer: string;
+  date: Date;
+
+  constructor(public dialog: MatDialog) { }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(NovaAvaliacaoComponent, {
+      width: '250px',
+      data: {customer: this.customer, contact_customer: this.contact_customer, date: this.date}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
 
   ngOnInit() {
   }

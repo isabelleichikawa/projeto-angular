@@ -12,9 +12,6 @@ export class ClientesComponent implements OnInit {
   displayedColumns = ['code', 'customer', 'contact_customer', 'date', 'category'];
   dataSource = ELEMENT_DATA;
 
-  // animal: string;
-  // name: string;
-
   customer: string;
   contact_customer: string;
   date: Date;
@@ -29,7 +26,6 @@ export class ClientesComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
-      // this.animal = result;
     });
   }
 

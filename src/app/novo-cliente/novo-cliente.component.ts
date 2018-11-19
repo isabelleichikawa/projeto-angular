@@ -22,8 +22,6 @@ export class NovoClienteComponent implements OnInit {
 }
 
 export interface DialogData {
-  // animal: string;
-  // name: string;
   customer: string;
   contact_customer: string;
   date: Date;

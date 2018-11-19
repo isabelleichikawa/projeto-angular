@@ -1,3 +1,14 @@
-<p>
-  nova-avaliacao works!
-</p>
+<h1 mat-dialog-title>Cadastro de Avaliação</h1>
+<div mat-dialog-content>
+  <p>Razão Social</p>  
+  <!-- <input type="text"> -->
+  <input matInput (ngModel)="data.customer">
+  <p>Contato</p>
+  <input type="text">
+  <p>Data</p>
+  <input type="date">
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+</div>
