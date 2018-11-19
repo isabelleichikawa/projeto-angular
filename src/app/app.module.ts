@@ -10,6 +10,9 @@ import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -46,7 +49,12 @@ import { NovaAvaliacaoComponent } from './nova-avaliacao/nova-avaliacao.componen
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     routing
+  ],
+  exports: [
+    MatNativeDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,13 +4,15 @@
     <input matInput placeholder="Razão Social" value="">
   </mat-form-field>
   <mat-form-field class="example-full-width">
-    <textarea matInput placeholder="Pessoa de Contato"></textarea>
+    <input matInput placeholder="Pessoa de Contato" value="">
   </mat-form-field>
-  <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Data"></textarea>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Selecione a data">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions class="buttons">
   <button mat-button (click)="onNoClick()">Cancelar</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial color="primary">Ok</button>
 </div>
