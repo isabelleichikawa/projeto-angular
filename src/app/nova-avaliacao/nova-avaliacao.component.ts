@@ -10,7 +10,9 @@ import { FormControl } from '@angular/forms';
 export class NovaAvaliacaoComponent implements OnInit {
 
   // toppings = new FormControl();
-  customers: string[] = ['K&L', 'Megasteam', 'VWC', 'ABC Metrologia', 'LEMPE', 'LRM'];
+  customers: string[] = ['K&L', 'Megasteam', 'VWC', 'ABC Metrologia', 'LEMPE', 'LRM', 'CTM', 'Calibratec',
+    'Omicron', 'MAERSK', 'LRM', 'ACCPR', 'ANCAL', 'CERTIFIC', 'SENAI', 'PRESERTEC', 'ABSI', 'Ambientalis', 'Cimeq',
+    'Excelmetro', 'Disotax'];
 
   constructor(
     public dialogRef: MatDialogRef<NovaAvaliacaoComponent>,
