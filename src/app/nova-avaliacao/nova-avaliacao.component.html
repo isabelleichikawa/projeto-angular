@@ -1,12 +1,18 @@
 <h1 mat-dialog-title>Cadastro de Avaliação</h1>
 <div mat-dialog-content>
-  <p>Razão Social</p>  
-  <!-- <input type="text"> -->
-  <input matInput (ngModel)="data.customer">
-  <p>Contato</p>
-  <input type="text">
-  <p>Data</p>
-  <input type="date">
+  <mat-form-field class="example-full-width">
+    <input matInput placeholder="Mês e Ano" value="">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="Cliente" value="">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="Em uma escala de 0 a 10, qual a probabilidade de você recomendar nosso produto/serviço a um amigo/conhecido?" value="">
+  </mat-form-field>
+  <mat-form-field class="example-full-width">
+      <input matInput placeholder="Qual é o motivo dessa nota?" value="">
+  </mat-form-field>
+
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>

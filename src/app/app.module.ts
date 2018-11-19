@@ -8,6 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatInputModule} from '@angular/material/input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,6 +43,7 @@ import { NovaAvaliacaoComponent } from './nova-avaliacao/nova-avaliacao.componen
     MatMenuModule,
     MatTableModule,
     MatDialogModule,
+    MatInputModule,
     routing
   ],
   providers: [],
