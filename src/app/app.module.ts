@@ -16,6 +16,8 @@ import { routing } from './app.routing';
 import { ClientesComponent } from './clientes/clientes.component';
 import { AvaliacoesComponent } from './avaliacoes/avaliacoes.component';
 import { MenuComponent } from './header/menu/menu.component';
+import { NovoClienteComponent } from './novo-cliente/novo-cliente.component';
+import { NovaAvaliacaoComponent } from './nova-avaliacao/nova-avaliacao.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { MenuComponent } from './header/menu/menu.component';
     HeaderComponent,
     ClientesComponent,
     AvaliacoesComponent,
-    MenuComponent
+    MenuComponent,
+    NovoClienteComponent,
+    NovaAvaliacaoComponent
   ],
   imports: [
     BrowserModule,
