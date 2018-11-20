@@ -27,6 +27,7 @@ import { NovoClienteComponent } from './clientes/novo-cliente/novo-cliente.compo
 import { ClienteService } from './clientes/shared/cliente.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpInterceptorProviders } from './http-interceptors';
+import { AvaliacaoService } from './avaliacoes/shared/avaliacao.service';
 
 
 @NgModule({
@@ -65,7 +66,8 @@ import { HttpInterceptorProviders } from './http-interceptors';
   ],
   providers: [
     HttpInterceptorProviders,
-    ClienteService
+    ClienteService,
+    AvaliacaoService
   ],
   bootstrap: [AppComponent]
 })

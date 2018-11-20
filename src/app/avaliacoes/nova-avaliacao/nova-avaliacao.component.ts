@@ -1,6 +1,8 @@
 import { Component, OnInit, Inject, NgZone } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl } from '@angular/forms';
+import { Avaliacao } from '../shared/avaliacao.model';
+import { AvaliacaoService } from '../shared/avaliacao.service';
 
 @Component({
   selector: 'app-nova-avaliacao',
@@ -16,13 +18,15 @@ export class NovaAvaliacaoComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<NovaAvaliacaoComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
+    private avaliacaoService: AvaliacaoService,
+    @Inject(MAT_DIALOG_DATA) public data: Avaliacao) { }
 
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   ngOnInit() {
+    console.log(this.data);
   }
 
 }

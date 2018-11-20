@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { NovaAvaliacaoComponent } from './nova-avaliacao/nova-avaliacao.component';
+import { AvaliacaoService } from './shared/avaliacao.service';
 
 @Component({
   selector: 'app-avaliacoes',
@@ -12,23 +13,41 @@ export class AvaliacoesComponent implements OnInit {
   displayedColumns = ['code', 'date_ref', 'customers', 'result'];
   dataSource = ELEMENT_DATA;
 
+  evaluations = [];
+  data = [];
+
   customer: string;
   contact_customer: string;
   date: Date;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    private avaliacaoService: AvaliacaoService
+  ) { }
 
-  openDialog(): void {
+  openDialog(evaluations = null): void {
     const dialogRef = this.dialog.open(NovaAvaliacaoComponent, {
-      data: {customer: this.customer, contact_customer: this.contact_customer, date: this.date}
+      data: evaluations
     });
 
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
+      console.log(result);
     });
   }
 
   ngOnInit() {
+    this.avaliacaoService.get().subscribe(result => {
+      console.log(result);
+      // this.customers = result;
+      const keys = Object.keys(result);
+      const values = Object.values(result);
+      for (let i = 0; i < keys.length; i++) {
+        this.data.push({id: keys[i], ...values[i]});
+      }
+      this.evaluations = this.data;
+      console.log(this.evaluations);
+    });
   }
 
 }

@@ -17,9 +17,9 @@ export class ClientesComponent implements OnInit {
   customers = [];
   data = [];
 
-  customer: string;
-  contactCustomer: string;
-  date: Date;
+  // customer: string;
+  // contactCustomer: string;
+  // date: Date;
 
   constructor(
     public dialog: MatDialog,
