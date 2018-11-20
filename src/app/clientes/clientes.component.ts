@@ -11,7 +11,7 @@ import { Cliente } from './shared/cliente.model';
 })
 export class ClientesComponent implements OnInit {
 
-  displayedColumns = ['customer', 'contactCustomer', 'date', 'category'];
+  displayedColumns = ['customer', 'contactCustomer', 'date', 'category', 'actions'];
   dataSource: Cliente[];
 
   customers = [];
@@ -45,6 +45,7 @@ export class ClientesComponent implements OnInit {
 
   refresh() {
     this.customers = [];
+    this.data = [];
     this.clienteService.get().subscribe(result => {
       console.log(result);
       // this.customers = result;
@@ -55,6 +56,15 @@ export class ClientesComponent implements OnInit {
       }
       this.customers = this.data;
       console.log(this.customers);
+    });
+  }
+
+  remove(id: string) {
+    console.log(id);
+    this.clienteService.delete(id).subscribe(result => {
+      console.log(result);
+      console.log(this.customers);
+      this.refresh();
     });
   }
 

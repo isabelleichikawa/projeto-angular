@@ -1,7 +1,9 @@
 <div class="titulo">
     <h2>Listagem de Avaliações</h2>
     <div>
-        <button mat-raised-button color="accent" (click)="openDialog()"><mat-icon>add</mat-icon>&nbsp;Nova Avaliação</button>
+        <button mat-raised-button color="accent" (click)="openDialog()">
+            <mat-icon>add</mat-icon>&nbsp;Nova Avaliação
+        </button>
     </div>
 </div>
 
@@ -31,6 +33,18 @@
         <ng-container matColumnDef="reason">
             <th mat-header-cell *matHeaderCellDef> Motivo </th>
             <td mat-cell *matCellDef="let element"> {{element.reason}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef> Ações </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-icon-button color="accent">
+                    <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
+                </button>
+                <button mat-icon-button color="accent">
+                    <mat-icon aria-label="Example icon-button with a heart icon">clear</mat-icon>
+                </button>
+            </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

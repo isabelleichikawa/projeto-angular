@@ -11,7 +11,7 @@ import { Avaliacao } from './shared/avaliacao.model';
 })
 export class AvaliacoesComponent implements OnInit {
 
-  displayedColumns = ['month', 'year', 'customers', 'scale', 'reason'];
+  displayedColumns = ['month', 'year', 'customers', 'scale', 'reason', 'actions'];
 
   evaluations = [];
   data = [];
