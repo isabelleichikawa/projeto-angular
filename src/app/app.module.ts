@@ -24,7 +24,7 @@ import { AvaliacoesComponent } from './avaliacoes/avaliacoes.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { NovaAvaliacaoComponent } from './avaliacoes/nova-avaliacao/nova-avaliacao.component';
 import { NovoClienteComponent } from './clientes/novo-cliente/novo-cliente.component';
-import { ClienteService } from './clientes/cliente.service';
+import { ClienteService } from './clientes/shared/cliente.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpInterceptorProviders } from './http-interceptors';
 
