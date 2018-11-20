@@ -2,47 +2,47 @@
   <h1 mat-dialog-title>Cadastro de Avaliação</h1>
   <div mat-dialog-content>
     <mat-form-field>
-      <mat-select placeholder="Mês">
-        <mat-option value="primary">Janeiro</mat-option>
-        <mat-option value="accent">Fevereiro</mat-option>
-        <mat-option value="warn">Março</mat-option>
-        <mat-option value="warn">Abril</mat-option>
-        <mat-option value="warn">Maio</mat-option>
-        <mat-option value="warn">Junho</mat-option>
-        <mat-option value="warn">Julho</mat-option>
-        <mat-option value="warn">Agosto</mat-option>
-        <mat-option value="warn">Setembro</mat-option>
-        <mat-option value="warn">Outubro</mat-option>
-        <mat-option value="warn">Novembro</mat-option>
-        <mat-option value="warn">Dezembro</mat-option>
+      <mat-select #month placeholder="Mês">
+        <mat-option value="Janeiro">Janeiro</mat-option>
+        <mat-option value="Fevereiro">Fevereiro</mat-option>
+        <mat-option value="Março">Março</mat-option>
+        <mat-option value="Abril">Abril</mat-option>
+        <mat-option value="Maio">Maio</mat-option>
+        <mat-option value="Junho">Junho</mat-option>
+        <mat-option value="Julho">Julho</mat-option>
+        <mat-option value="Agosto">Agosto</mat-option>
+        <mat-option value="Setembro">Setembro</mat-option>
+        <mat-option value="Setembro">Setembro</mat-option>
+        <mat-option value="Novembro">Novembro</mat-option>
+        <mat-option value="Dezembro">Dezembro</mat-option>
       </mat-select>
     </mat-form-field> &nbsp;
 
     <mat-form-field>
-      <mat-select placeholder="Ano">
-        <mat-option value="primary">2018</mat-option>
+      <mat-select #year placeholder="Ano">
+        <mat-option value="2018">2018</mat-option>
       </mat-select>
     </mat-form-field>
     <br>
     <mat-form-field class="example-full-width">
       <!-- <mat-select placeholder="Clientes" [formControl]="toppings" multiple> -->
       <mat-select placeholder="Clientes" multiple>
-        <mat-option *ngFor="let customer of customers" [value]="cliente">{{customer}}</mat-option>
+        <!-- <mat-option #customers *ngFor="let customer of customersList" [value]="customer">{{customer}}</mat-option> -->
       </mat-select>
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <input matInput type="number" placeholder="Em uma escala de 0 a 10, qual a probabilidade de você recomendar nosso produto/serviço a um amigo/conhecido?"
+      <input #scale matInput type="number" placeholder="Em uma escala de 0 a 10, qual a probabilidade de você recomendar nosso produto/serviço a um amigo/conhecido?"
         min="0" max="10">
     </mat-form-field>
 
     <mat-form-field class="example-full-width">
-      <textarea matInput placeholder="Qual é o motivo dessa nota?" value=""></textarea>
+      <textarea #reason matInput placeholder="Qual é o motivo dessa nota?" value=""></textarea>
     </mat-form-field>
   </div>
 
   <div mat-dialog-actions class="buttons">
     <button mat-button (click)="onNoClick()">Cancelar</button>
-    <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial color="primary">Ok</button>
+    <button mat-button (click)="save()" cdkFocusInitial color="primary">Ok</button>
   </div>
 </div>

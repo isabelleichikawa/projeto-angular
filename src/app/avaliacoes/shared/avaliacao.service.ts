@@ -16,21 +16,21 @@ export class AvaliacaoService {
     return this.http.get<Avaliacao[]>(url);
   }
 
-//   post(customer: string, contactCustomer: string, date: Date): Observable<any> {
-//     const url = '/customers';
-//     const body = {customer: customer, contactCustomer: contactCustomer, date: date};
-//     return this.http.post<any>(url, body);
-//   }
+  post(month: string, year: string, scale: number, reason: string): Observable<any> {
+    const url = '/evaluations';
+    const body = {month: month, year: year, scale: scale, reason: reason};
+    return this.http.post<any>(url, body);
+  }
 
-//   put(identifier: string, customer: string, contactCustomer: string, date: Date) {
-//     const url = '/customers/' + (identifier ? identifier : '');
-//     const body = {customer: customer, contactCustomer: contactCustomer, date: date};
-//     return this.http.put<any>(url, body);
-//   }
+  put(identifier: string, month: string, year: string, scale: number, reason: string): Observable<any> {
+    const url = '/evaluations';
+    const body = {month: month, year: year, scale: scale, reason: reason};
+    return this.http.put<any>(url, body);
+  }
 
-//   delete(identifier: string) {
-//     const url = '/customers/' + (identifier ? identifier : '');
-//     return this.http.delete<any>(url);
-//   }
+  delete(identifier: string) {
+    const url = '/evaluations/' + (identifier ? identifier : '');
+    return this.http.delete<any>(url);
+  }
 
 }

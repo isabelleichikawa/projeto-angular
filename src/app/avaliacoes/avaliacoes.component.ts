@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { NovaAvaliacaoComponent } from './nova-avaliacao/nova-avaliacao.component';
 import { AvaliacaoService } from './shared/avaliacao.service';
+import { Avaliacao } from './shared/avaliacao.model';
 
 @Component({
   selector: 'app-avaliacoes',
@@ -10,15 +11,11 @@ import { AvaliacaoService } from './shared/avaliacao.service';
 })
 export class AvaliacoesComponent implements OnInit {
 
-  displayedColumns = ['code', 'date_ref', 'customers', 'result'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns = ['month', 'year', 'customers', 'scale', 'reason'];
+  dataSource: Avaliacao[];
 
   evaluations = [];
   data = [];
-
-  customer: string;
-  contact_customer: string;
-  date: Date;
 
   constructor(
     public dialog: MatDialog,
@@ -50,18 +47,8 @@ export class AvaliacoesComponent implements OnInit {
     });
   }
 
+  edit(id: string) {
+    console.log(id);
+  }
+
 }
-
-export interface PeriodicElement {
-  customers: string;
-  date_ref: string;
-  code: number;
-  result: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {code: 1, date_ref: '05/2018', customers: 'VWG, ABC, LEMPE, Ambientalis', result: 'Meta atingida - 80%'},
-  {code: 2, date_ref: '06/2018', customers: 'K&L, LRM, Calibratec, Cimeq', result: 'Meta dentro da tolerância - 65%'},
-  {code: 3, date_ref: '07/2018', customers: 'Megasteam, ABSI, MAERSK, Disotax', result: 'Meta não atingida - 30%'}
-];
-

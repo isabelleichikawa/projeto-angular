@@ -29,11 +29,6 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
-    <!-- <div *ngFor="let customer of customers" (click)="openDialog(customer)" class="card">
-        <div>{{ customer.customer }}</div>
-        <div>{{ customer.contact_customer }}</div>
-        <div>{{ customer.date }}</div>
-    </div> -->
 </div>
 
 <router-outlet></router-outlet>
