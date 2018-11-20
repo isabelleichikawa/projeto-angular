@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { MatDialog, MatTable } from '@angular/material';
 import { NovaAvaliacaoComponent } from './nova-avaliacao/nova-avaliacao.component';
 import { AvaliacaoService } from './shared/avaliacao.service';
 import { Avaliacao } from './shared/avaliacao.model';
@@ -12,14 +12,14 @@ import { Avaliacao } from './shared/avaliacao.model';
 export class AvaliacoesComponent implements OnInit {
 
   displayedColumns = ['month', 'year', 'customers', 'scale', 'reason'];
-  dataSource: Avaliacao[];
 
   evaluations = [];
   data = [];
 
   constructor(
     public dialog: MatDialog,
-    private avaliacaoService: AvaliacaoService
+    private avaliacaoService: AvaliacaoService,
+    // private changeDetectorRefs: ChangeDetectorRef
   ) { }
 
   openDialog(evaluations = null): void {
@@ -30,10 +30,15 @@ export class AvaliacoesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
+      this.refresh();
     });
   }
 
   ngOnInit() {
+    this.refresh();
+  }
+
+  refresh() {
     this.avaliacaoService.get().subscribe(result => {
       console.log(result);
       // this.customers = result;

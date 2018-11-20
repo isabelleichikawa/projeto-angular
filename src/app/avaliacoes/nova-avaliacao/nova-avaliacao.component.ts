@@ -3,6 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatSelect } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { Avaliacao } from '../shared/avaliacao.model';
 import { AvaliacaoService } from '../shared/avaliacao.service';
+import { ClienteService } from 'src/app/clientes/shared/cliente.service';
 
 @Component({
   selector: 'app-nova-avaliacao',
@@ -17,15 +18,16 @@ export class NovaAvaliacaoComponent implements OnInit {
   @ViewChild('scale') scale: ElementRef;
   @ViewChild('reason') reason: ElementRef;
 
-  // toppings = new FormControl();
-  // customersList: string[] = ['K&L', 'Megasteam', 'VWC', 'ABC Metrologia', 'LEMPE', 'LRM', 'CTM', 'Calibratec',
-  //   'Omicron', 'MAERSK', 'LRM', 'ACCPR', 'ANCAL', 'CERTIFIC', 'SENAI', 'PRESERTEC', 'ABSI', 'Ambientalis', 'Cimeq',
-  //   'Excelmetro', 'Disotax'];
+  toppings = new FormControl();
+  customersList = [];
+  detailsCustomers = [];
 
   constructor(
     public dialogRef: MatDialogRef<NovaAvaliacaoComponent>,
     private avaliacaoService: AvaliacaoService,
-    @Inject(MAT_DIALOG_DATA) public data: Avaliacao) { }
+    private clienteService: ClienteService,
+    @Inject(MAT_DIALOG_DATA) public data: Avaliacao,
+  ) { }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -33,6 +35,7 @@ export class NovaAvaliacaoComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.data);
+    this.listCustomers();
   }
 
   save() {
@@ -40,14 +43,36 @@ export class NovaAvaliacaoComponent implements OnInit {
     console.log(this.year.value);
     console.log(this.scale.nativeElement.value);
     console.log(this.reason.nativeElement.value);
-    if (!this.month.value || !this.year.value || !this.scale.nativeElement.value || !this.reason.nativeElement.value) {
+    console.log(this.customers);
+    if (!this.month.value || !this.year.value || !this.customers.value || this.customers.value.length <= 0 || !this.scale.nativeElement.value || !this.reason.nativeElement.value) {
       return null;
     }
-    this.avaliacaoService.post(this.month.value, this.year.value, this.scale.nativeElement.value, this.reason.nativeElement.value)
+    const avaliacao = {
+      month: this.month.value,
+      year: this.year.value,
+      scale: this.scale.nativeElement.value,
+      reason: this.reason.nativeElement.value,
+      customers: this.customers.value
+    };
+    this.avaliacaoService.post(avaliacao)
       .subscribe(data => {
         console.log(data.id);
         this.dialogRef.close({ id: data.id });
       });
+  }
+
+  listCustomers() {
+    this.clienteService.get().subscribe(result => {
+      console.log(result);
+      const keys = Object.keys(result);
+      const values = Object.values(result);
+      for (let i = 0; i < keys.length; i++) {
+        this.detailsCustomers.push({ id: keys[i], ...values[i] });
+      }
+      this.customersList = this.detailsCustomers.map(x => {
+        return x.customer;
+      });
+    });
   }
 
 }

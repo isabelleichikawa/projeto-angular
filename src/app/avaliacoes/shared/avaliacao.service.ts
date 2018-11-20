@@ -16,16 +16,14 @@ export class AvaliacaoService {
     return this.http.get<Avaliacao[]>(url);
   }
 
-  post(month: string, year: string, scale: number, reason: string): Observable<any> {
+  post(avaliacao: any): Observable<any> {
     const url = '/evaluations';
-    const body = {month: month, year: year, scale: scale, reason: reason};
-    return this.http.post<any>(url, body);
+    return this.http.post<any>(url, avaliacao);
   }
 
-  put(identifier: string, month: string, year: string, scale: number, reason: string): Observable<any> {
+  put(avaliacao: any): Observable<any> {
     const url = '/evaluations';
-    const body = {month: month, year: year, scale: scale, reason: reason};
-    return this.http.put<any>(url, body);
+    return this.http.put<any>(url, avaliacao);
   }
 
   delete(identifier: string) {

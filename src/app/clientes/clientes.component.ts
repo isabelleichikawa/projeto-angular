@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { NovoClienteComponent } from './novo-cliente/novo-cliente.component';
 import { ClienteService } from './shared/cliente.service';
 import { Cliente } from './shared/cliente.model';
@@ -16,6 +16,7 @@ export class ClientesComponent implements OnInit {
 
   customers = [];
   data = [];
+  // teste: any;
 
   constructor(
     public dialog: MatDialog,
@@ -26,7 +27,7 @@ export class ClientesComponent implements OnInit {
     const dialogRef = this.dialog.open(NovoClienteComponent, {
       data: customer
     });
-
+    // console.log(this.listCustomers());
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
@@ -40,7 +41,7 @@ export class ClientesComponent implements OnInit {
       const keys = Object.keys(result);
       const values = Object.values(result);
       for (let i = 0; i < keys.length; i++) {
-        this.data.push({id: keys[i], ...values[i]});
+        this.data.push({ id: keys[i], ...values[i] });
       }
       this.customers = this.data;
       console.log(this.customers);
@@ -50,6 +51,21 @@ export class ClientesComponent implements OnInit {
   edit(id: string) {
     console.log(id);
   }
+
+   // listCustomers() {
+  //   this.clienteService.get().subscribe(result => {
+  //     console.log(result);
+  //     const keys = Object.keys(result);
+  //     const values = Object.values(result);
+  //     for (let i = 0; i < keys.length; i++) {
+  //       this.data.push({ id: keys[i], ...values[i] });
+  //     }
+  //     return this.customers.map(function (x) {
+  //       return x.customer;
+  //     });
+  //     // console.log(this.teste);
+  //   });
+  // }
 
 }
 

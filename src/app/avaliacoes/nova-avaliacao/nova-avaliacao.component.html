@@ -26,8 +26,8 @@
     <br>
     <mat-form-field class="example-full-width">
       <!-- <mat-select placeholder="Clientes" [formControl]="toppings" multiple> -->
-      <mat-select placeholder="Clientes" multiple>
-        <!-- <mat-option #customers *ngFor="let customer of customersList" [value]="customer">{{customer}}</mat-option> -->
+      <mat-select #customers placeholder="Clientes" multiple>
+        <mat-option *ngFor="let customer of customersList" [value]="customer">{{customer}}</mat-option>
       </mat-select>
     </mat-form-field>
 
