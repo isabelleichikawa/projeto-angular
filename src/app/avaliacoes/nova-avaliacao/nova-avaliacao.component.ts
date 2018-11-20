@@ -67,11 +67,8 @@ export class NovaAvaliacaoComponent implements OnInit {
       const keys = Object.keys(result);
       const values = Object.values(result);
       for (let i = 0; i < keys.length; i++) {
-        this.detailsCustomers.push({ id: keys[i], ...values[i] });
+        this.customersList.push(values[i].customer);
       }
-      this.customersList = this.detailsCustomers.map(x => {
-        return x.customer;
-      });
     });
   }
 

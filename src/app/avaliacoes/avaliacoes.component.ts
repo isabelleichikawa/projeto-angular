@@ -39,6 +39,7 @@ export class AvaliacoesComponent implements OnInit {
   }
 
   refresh() {
+    this.evaluations = [];
     this.avaliacaoService.get().subscribe(result => {
       console.log(result);
       // this.customers = result;

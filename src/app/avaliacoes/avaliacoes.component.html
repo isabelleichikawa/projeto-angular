@@ -1,6 +1,8 @@
 <div class="titulo">
-        <h2>Listagem de Avaliações</h2>
-        <button mat-raised-button (click)="openDialog()">Nova Avaliação</button>
+    <h2>Listagem de Avaliações</h2>
+    <div>
+        <button mat-raised-button color="accent" (click)="openDialog()">Nova Avaliação</button>
+    </div>
 </div>
 
 <div class="container mat-elevation-z8">
@@ -12,9 +14,9 @@
         </ng-container>
 
         <ng-container matColumnDef="year">
-                <th mat-header-cell *matHeaderCellDef> Ano </th>
-                <td mat-cell *matCellDef="let element"> {{element.year}} </td>
-            </ng-container>
+            <th mat-header-cell *matHeaderCellDef> Ano </th>
+            <td mat-cell *matCellDef="let element"> {{element.year}} </td>
+        </ng-container>
 
         <ng-container matColumnDef="customers">
             <th mat-header-cell *matHeaderCellDef> Clientes </th>

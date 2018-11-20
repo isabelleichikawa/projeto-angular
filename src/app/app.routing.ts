@@ -8,7 +8,7 @@ import { NovaAvaliacaoComponent } from './avaliacoes/nova-avaliacao/nova-avaliac
 import { NovoClienteComponent } from './clientes/novo-cliente/novo-cliente.component';
 
 const APP_ROUTES: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full'},
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     {
         path: 'home', component: HomeComponent, children: [
             { path: 'clientes', component: ClientesComponent, children: [{ path: 'novo-cliente', component: NovoClienteComponent }] },
