@@ -42,7 +42,7 @@
                     <mat-icon aria-label="Example icon-button with a heart icon">edit</mat-icon>
                 </button>
                 <button mat-icon-button color="accent">
-                    <mat-icon aria-label="Example icon-button with a heart icon">clear</mat-icon>
+                    <mat-icon aria-label="Example icon-button with a heart icon" (click)="remove(element.id)">clear</mat-icon>
                 </button>
             </td>
         </ng-container>

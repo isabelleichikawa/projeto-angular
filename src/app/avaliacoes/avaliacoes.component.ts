@@ -40,6 +40,7 @@ export class AvaliacoesComponent implements OnInit {
 
   refresh() {
     this.evaluations = [];
+    this.data = [];
     this.avaliacaoService.get().subscribe(result => {
       console.log(result);
       // this.customers = result;
@@ -55,6 +56,15 @@ export class AvaliacoesComponent implements OnInit {
 
   edit(id: string) {
     console.log(id);
+  }
+
+  remove(id: string) {
+    console.log(id);
+    this.avaliacaoService.delete(id).subscribe(result => {
+      console.log(result);
+      console.log(this.evaluations);
+      this.refresh();
+    });
   }
 
 }
