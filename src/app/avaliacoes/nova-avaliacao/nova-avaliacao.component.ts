@@ -18,9 +18,9 @@ export class NovaAvaliacaoComponent implements OnInit {
   @ViewChild('reason') reason: ElementRef;
 
   // toppings = new FormControl();
-  customersList: string[] = ['K&L', 'Megasteam', 'VWC', 'ABC Metrologia', 'LEMPE', 'LRM', 'CTM', 'Calibratec',
-    'Omicron', 'MAERSK', 'LRM', 'ACCPR', 'ANCAL', 'CERTIFIC', 'SENAI', 'PRESERTEC', 'ABSI', 'Ambientalis', 'Cimeq',
-    'Excelmetro', 'Disotax'];
+  // customersList: string[] = ['K&L', 'Megasteam', 'VWC', 'ABC Metrologia', 'LEMPE', 'LRM', 'CTM', 'Calibratec',
+  //   'Omicron', 'MAERSK', 'LRM', 'ACCPR', 'ANCAL', 'CERTIFIC', 'SENAI', 'PRESERTEC', 'ABSI', 'Ambientalis', 'Cimeq',
+  //   'Excelmetro', 'Disotax'];
 
   constructor(
     public dialogRef: MatDialogRef<NovaAvaliacaoComponent>,
