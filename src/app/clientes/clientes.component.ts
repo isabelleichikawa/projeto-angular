@@ -31,10 +31,20 @@ export class ClientesComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
       console.log(result);
+      this.refresh();
     });
   }
 
   ngOnInit() {
+    this.refresh();
+  }
+
+  edit(id: string) {
+    console.log(id);
+  }
+
+  refresh() {
+    this.customers = [];
     this.clienteService.get().subscribe(result => {
       console.log(result);
       // this.customers = result;
@@ -47,25 +57,6 @@ export class ClientesComponent implements OnInit {
       console.log(this.customers);
     });
   }
-
-  edit(id: string) {
-    console.log(id);
-  }
-
-   // listCustomers() {
-  //   this.clienteService.get().subscribe(result => {
-  //     console.log(result);
-  //     const keys = Object.keys(result);
-  //     const values = Object.values(result);
-  //     for (let i = 0; i < keys.length; i++) {
-  //       this.data.push({ id: keys[i], ...values[i] });
-  //     }
-  //     return this.customers.map(function (x) {
-  //       return x.customer;
-  //     });
-  //     // console.log(this.teste);
-  //   });
-  // }
 
 }
 
