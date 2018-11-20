@@ -10,9 +10,9 @@ import { ClienteService } from '../shared/cliente.service';
 })
 export class NovoClienteComponent implements OnInit {
 
-  @ViewChild('input1') input1: ElementRef;
-  @ViewChild('input2') input2: ElementRef;
-  @ViewChild('input3') input3: ElementRef;
+  @ViewChild('customer') customer: ElementRef;
+  @ViewChild('contactCustomer') contactCustomer: ElementRef;
+  @ViewChild('date') date: ElementRef;
 
   constructor(
     public dialogRef: MatDialogRef<NovoClienteComponent>,
@@ -25,17 +25,13 @@ export class NovoClienteComponent implements OnInit {
 
   ngOnInit() {
     console.log(this.data);
-    if (this.data) {
-
-    }
   }
 
   save() {
-    console.log(this.input3.nativeElement.value);
-    if (!this.input1.nativeElement.value || !this.input2.nativeElement.value || !this.input3.nativeElement.value) {
+    if (!this.customer.nativeElement.value || !this.contactCustomer.nativeElement.value || !this.date.nativeElement.value) {
       return null;
     }
-    this.clienteService.post(this.input1.nativeElement.value, this.input2.nativeElement.value, this.input3.nativeElement.value)
+    this.clienteService.post(this.customer.nativeElement.value, this.contactCustomer.nativeElement.value, this.date.nativeElement.value)
       .subscribe(data => {
         console.log(data.id);
         this.dialogRef.close({ id: data.id });

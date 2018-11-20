@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 import { Cliente } from './cliente.model';
@@ -18,13 +18,13 @@ export class ClienteService {
 
   post(customer: string, contactCustomer: string, date: Date): Observable<any> {
     const url = '/customers';
-    const body = {customer: customer, contact_customer: contactCustomer, date: date};
+    const body = {customer: customer, contactCustomer: contactCustomer, date: date};
     return this.http.post<any>(url, body);
   }
 
   put(identifier: string, customer: string, contactCustomer: string, date: Date) {
     const url = '/customers/' + (identifier ? identifier : '');
-    const body = {customer: customer, contact_customer: contactCustomer, date: date};
+    const body = {customer: customer, contactCustomer: contactCustomer, date: date};
     return this.http.put<any>(url, body);
   }
 

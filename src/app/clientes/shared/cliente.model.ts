@@ -1,7 +1,7 @@
 export interface Cliente {
     id: string;
     customer: string;
-    contact_customer: string;
+    contactCustomer: string;
     date: Date;
     category: string;
 }

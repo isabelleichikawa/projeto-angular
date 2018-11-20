@@ -11,14 +11,14 @@ import { Cliente } from './shared/cliente.model';
 })
 export class ClientesComponent implements OnInit {
 
-  displayedColumns = ['customer', 'contact_customer', 'date', 'category'];
+  displayedColumns = ['customer', 'contactCustomer', 'date', 'category'];
   dataSource: Cliente[];
 
   customers = [];
   data = [];
 
   customer: string;
-  contact_customer: string;
+  contactCustomer: string;
   date: Date;
 
   constructor(
