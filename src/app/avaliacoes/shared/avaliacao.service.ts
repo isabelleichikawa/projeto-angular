@@ -21,10 +21,10 @@ export class AvaliacaoService {
     return this.http.post<any>(url, avaliacao);
   }
 
-  put(identifier: string, month: string, year: string, scale: number, reason: string, customers: []) {
+  put(avaliacao: any, identifier: string) {
     const url = '/evaluations/' + (identifier ? identifier : '');
-    const body = {identifier: identifier, month: month, year: year, scale: scale, reason: reason, customers: customers};
-    return this.http.put<any>(url, body);
+    // const body = {identifier: identifier, month: month, year: year, scale: scale, reason: reason, customers: customers};
+    return this.http.put<any>(url, avaliacao);
   }
 
   delete(identifier: string) {
