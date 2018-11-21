@@ -4,6 +4,8 @@ import { FormControl, FormGroup } from '@angular/forms';
 import { Avaliacao } from '../shared/avaliacao.model';
 import { AvaliacaoService } from '../shared/avaliacao.service';
 import { ClienteService } from 'src/app/clientes/shared/cliente.service';
+import { Observable } from 'rxjs';
+import { startWith, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-nova-avaliacao',
@@ -14,13 +16,19 @@ export class NovaAvaliacaoComponent implements OnInit {
 
   @ViewChild('month') month: MatSelect;
   @ViewChild('year') year: MatSelect;
-  @ViewChild('customers') customers: MatSelect;
+  @ViewChild('customers') customers: ElementRef;
   @ViewChild('scale') scale: ElementRef;
   @ViewChild('reason') reason: ElementRef;
 
   toppings = new FormControl();
   customersList = [];
   detailsCustomers = [];
+  customerSelected = [];
+  i = 0;
+
+  myControl = new FormControl();
+  filteredOptions: Observable<string[]>;
+  options = this.customersList;
 
   form: FormGroup;
 
@@ -49,6 +57,11 @@ export class NovaAvaliacaoComponent implements OnInit {
       // this.data.customers = this.form.value.customers;
       this.form.patchValue(this.data);
     }
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
   }
 
   save() {
@@ -85,7 +98,27 @@ export class NovaAvaliacaoComponent implements OnInit {
       for (let i = 0; i < keys.length; i++) {
         this.customersList.push(values[i].customer);
       }
+      this.form.controls.customers.reset();
     });
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+  }
+
+  selectCustomer(customer: string) {
+    this.customerSelected[this.i++] = customer;
+    this.clearCustomer();
+    console.log(this.customerSelected);
+  }
+
+  clearCustomer(setFocus: boolean = true) {
+    this.customers.nativeElement.value = '';
+    if (setFocus)
+      this.customers.nativeElement.focus();
+    this.form.controls.customers.reset();
+    this.form.controls.customers.setValue('');
   }
 
 }

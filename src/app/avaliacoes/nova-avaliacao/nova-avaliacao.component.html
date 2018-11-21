@@ -25,12 +25,25 @@
         </mat-select>
       </mat-form-field>
       <br>
-      <mat-form-field class="example-full-width">
-        <!-- <mat-select placeholder="Clientes" [formControl]="toppings" multiple> -->
+      <!-- <mat-form-field class="example-full-width">
+        <!-- <mat-select placeholder="Clientes" [formControl]="toppings" multiple> --
         <mat-select #customers placeholder="Clientes" multiple formControlName="customers">
           <mat-option *ngFor="let customer of customersList" [value]="customer">{{customer}}</mat-option>
         </mat-select>
+      </mat-form-field> -->
+
+      <mat-form-field class="example-full-width">
+        <input #customers type="text" placeholder="Clientes" matInput formControlName="customers" [formControl]="myControl" [matAutocomplete]="auto">
+        <mat-autocomplete  #auto="matAutocomplete" >
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="selectCustomer(option)">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
       </mat-form-field>
+
+      <mat-list role="list">
+          <mat-list-item role="listitem" *ngFor="let customer of customerSelected">{{customer}}</mat-list-item>
+      </mat-list>
 
       <mat-form-field class="example-full-width">
         <input #scale matInput type="number" placeholder="Em uma escala de 0 a 10, qual a probabilidade de você recomendar nosso produto/serviço a um amigo/conhecido?"
