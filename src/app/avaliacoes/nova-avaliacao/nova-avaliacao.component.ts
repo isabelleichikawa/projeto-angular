@@ -53,11 +53,11 @@ export class NovaAvaliacaoComponent implements OnInit {
 
   save() {
     const fData = this.form.value;
-    console.log(fData);
+    // console.log(fData);
     if (!fData.month || !fData.year || !fData.customers || fData.customers.length <= 0 || !fData.scale || !fData.reason) {
       return null;
     } else if (this.data === null) {
-      console.log('novo');
+      // console.log('novo');
       const avaliacao = {
         month: fData.month,
         year: fData.year,
@@ -70,7 +70,7 @@ export class NovaAvaliacaoComponent implements OnInit {
           this.dialogRef.close({ id: fData.id });
         });
     } else {
-      console.log('edit');
+      // console.log('edit');
       this.avaliacaoService.put(this.data.id, fData.month, fData.year, fData.scale, fData.reason, fData.customers)
         .subscribe(data => {
           this.dialogRef.close({});

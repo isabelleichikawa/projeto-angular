@@ -44,18 +44,16 @@ export class NovoClienteComponent implements OnInit {
 
   save() {
     const fData = this.form.value;
-    console.log(fData);
+    // console.log(fData);
     if (!fData.customer || !fData.contactCustomer || !fData.date) {
       return null;
     } else if (this.data === null) {
-      console.log('novo cliente');
+      // console.log('novo cliente');
       this.clienteService.post(fData.customer, fData.contactCustomer, fData.date)
         .subscribe(data => {
           this.dialogRef.close({ id: fData.id });
         });
     } else {
-      console.log('teste');
-      console.log(this.data);
       this.clienteService.put(this.data.id, fData.customer, fData.contactCustomer, fData.date)
         .subscribe(data => {
           this.dialogRef.close({});
