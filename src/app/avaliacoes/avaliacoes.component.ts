@@ -28,8 +28,6 @@ export class AvaliacoesComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
       this.refresh();
     });
   }
@@ -42,27 +40,21 @@ export class AvaliacoesComponent implements OnInit {
     this.evaluations = [];
     this.data = [];
     this.avaliacaoService.get().subscribe(result => {
-      console.log(result);
-      // this.customers = result;
+      // this.customers = result
       const keys = Object.keys(result);
       const values = Object.values(result);
       for (let i = 0; i < keys.length; i++) {
         this.data.push({id: keys[i], ...values[i]});
       }
       this.evaluations = this.data;
-      console.log(this.evaluations);
     });
   }
 
   edit(id: string) {
-    console.log(id);
   }
 
   remove(id: string) {
-    console.log(id);
     this.avaliacaoService.delete(id).subscribe(result => {
-      console.log(result);
-      console.log(this.evaluations);
       this.refresh();
     });
   }

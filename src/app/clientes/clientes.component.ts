@@ -16,7 +16,6 @@ export class ClientesComponent implements OnInit {
 
   customers = [];
   data = [];
-  // teste: any;
 
   constructor(
     public dialog: MatDialog,
@@ -27,10 +26,7 @@ export class ClientesComponent implements OnInit {
     const dialogRef = this.dialog.open(NovoClienteComponent, {
       data: customer
     });
-    // console.log(this.listCustomers());
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      console.log(result);
       this.refresh();
     });
   }
@@ -39,15 +35,10 @@ export class ClientesComponent implements OnInit {
     this.refresh();
   }
 
-  edit(id: string) {
-    console.log(id);
-  }
-
   refresh() {
     this.customers = [];
     this.data = [];
     this.clienteService.get().subscribe(result => {
-      console.log(result);
       // this.customers = result;
       const keys = Object.keys(result);
       const values = Object.values(result);
@@ -55,17 +46,28 @@ export class ClientesComponent implements OnInit {
         this.data.push({ id: keys[i], ...values[i] });
       }
       this.customers = this.data;
-      console.log(this.customers);
     });
   }
 
   remove(id: string) {
-    console.log(id);
     this.clienteService.delete(id).subscribe(result => {
-      console.log(result);
-      console.log(this.customers);
       this.refresh();
     });
+  }
+
+  edit(objCustomer: any) {
+    const dialogRef = this.dialog.open(NovoClienteComponent, {
+      // data: objCustomer
+    });
+    dialogRef.componentInstance.data = objCustomer;
+    this.clienteService.put(objCustomer.id, objCustomer.customer, objCustomer.contactCustomer, objCustomer.date)
+      .subscribe(data => {
+        // data = objCustomer;
+    });
+    // dialogRef.afterClosed().subscribe(data => {
+    //   console.log('The dialog was closed');
+    //   this.refresh();
+    // });
   }
 
 }

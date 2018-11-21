@@ -1,20 +1,22 @@
 <div class="form">
   <h1 mat-dialog-title>Cadastro de Cliente</h1>
-  <div mat-dialog-content>
-    <mat-form-field class="example-full-width">
-      <input #customer matInput placeholder="Razão Social" value="">
-    </mat-form-field>
-    <mat-form-field class="example-full-width">
-      <input #contactCustomer matInput placeholder="Pessoa de Contato" value="">
-    </mat-form-field>
-    <mat-form-field>
-      <input #date matInput [matDatepicker]="picker" placeholder="Selecione a data">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </div>
-  <div mat-dialog-actions class="buttons">
-    <button mat-button (click)="onNoClick()">Cancelar</button>
-    <button mat-button (click)="save()" cdkFocusInitial color="primary">Ok</button>
-  </div>
+  <form [formGroup]="form">
+    <div mat-dialog-content>
+      <mat-form-field class="example-full-width">
+        <input #customer matInput placeholder="Razão Social" formControlName="customer">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input #contactCustomer matInput placeholder="Pessoa de Contato" formControlName="contactCustomer">
+      </mat-form-field>
+      <mat-form-field>
+        <input #date matInput [matDatepicker]="picker" placeholder="Selecione a data" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="buttons">
+      <button mat-button (click)="onNoClick()">Cancelar</button>
+      <button mat-button (click)="save()" cdkFocusInitial color="primary">Ok</button>
+    </div>
+  </form>
 </div>

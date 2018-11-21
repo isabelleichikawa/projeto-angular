@@ -34,16 +34,10 @@ export class NovaAvaliacaoComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.data);
     this.listCustomers();
   }
 
   save() {
-    console.log(this.month.value);
-    console.log(this.year.value);
-    console.log(this.scale.nativeElement.value);
-    console.log(this.reason.nativeElement.value);
-    console.log(this.customers);
     if (!this.month.value || !this.year.value || !this.customers.value || this.customers.value.length <= 0 || !this.scale.nativeElement.value || !this.reason.nativeElement.value) {
       return null;
     }
@@ -56,14 +50,12 @@ export class NovaAvaliacaoComponent implements OnInit {
     };
     this.avaliacaoService.post(avaliacao)
       .subscribe(data => {
-        console.log(data.id);
         this.dialogRef.close({ id: data.id });
       });
   }
 
   listCustomers() {
     this.clienteService.get().subscribe(result => {
-      console.log(result);
       const keys = Object.keys(result);
       const values = Object.values(result);
       for (let i = 0; i < keys.length; i++) {
