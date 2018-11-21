@@ -19,9 +19,9 @@
             <td mat-cell *matCellDef="let element"> {{element.contactCustomer}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="date">
+        <ng-container matColumnDef="dateFormated">
             <th mat-header-cell *matHeaderCellDef> Data de Cadastro </th>
-            <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.dateFormated}} </td>
         </ng-container>
 
         <ng-container matColumnDef="category">
@@ -33,7 +33,7 @@
             <th mat-header-cell *matHeaderCellDef> Ações </th>
             <td mat-cell *matCellDef="let element">
                 <button mat-icon-button color="accent">
-                    <mat-icon aria-label="Example icon-button with a heart icon" (click)="edit(element)">edit</mat-icon>
+                    <mat-icon aria-label="Example icon-button with a heart icon" (click)="openDialog(element)">edit</mat-icon>
                 </button>
                 <button mat-icon-button color="accent">
                     <mat-icon aria-label="Example icon-button with a heart icon" (click)="remove(element.id)">clear</mat-icon>

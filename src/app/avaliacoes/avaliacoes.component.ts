@@ -21,11 +21,21 @@ export class AvaliacoesComponent implements OnInit {
     private avaliacaoService: AvaliacaoService
   ) { }
 
-  openDialog(evaluations = null): void {
-    const dialogRef = this.dialog.open(NovaAvaliacaoComponent, {
-      data: evaluations
-    });
+  // openDialog(evaluations = null): void {
+  //   const dialogRef = this.dialog.open(NovaAvaliacaoComponent, {
+  //     data: evaluations
+  //   });
 
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     this.refresh();
+  //   });
+  // }
+
+  openDialog(customer: any = null): void {
+    const dialogRef = this.dialog.open(NovaAvaliacaoComponent, {
+      data: customer
+    });
+    dialogRef.componentInstance.data = customer;
     dialogRef.afterClosed().subscribe(result => {
       this.refresh();
     });
@@ -55,17 +65,17 @@ export class AvaliacoesComponent implements OnInit {
     });
   }
 
-  edit(objCustomer: any) {
-    const dialogRef = this.dialog.open(NovaAvaliacaoComponent, {
-      // data: objCustomer
-    });
-    dialogRef.componentInstance.data = objCustomer;
-    // this.avaliacaoService.put(objCustomer.id, objCustomer.month, objCustomer.year, objCustomer.scale, objCustomer.reason, objCustomer.customer)
-    //   .subscribe(data => {
-    // });
-    dialogRef.afterClosed().subscribe(result => {
-      this.refresh();
-    });
-  }
+  // edit(objCustomer: any) {
+  //   const dialogRef = this.dialog.open(NovaAvaliacaoComponent, {
+  //     // data: objCustomer
+  //   });
+  //   dialogRef.componentInstance.data = objCustomer;
+  //   // this.avaliacaoService.put(objCustomer.id, objCustomer.month, objCustomer.year, objCustomer.scale, objCustomer.reason, objCustomer.customer)
+  //   //   .subscribe(data => {
+  //   // });
+  //   dialogRef.afterClosed().subscribe(result => {
+  //     this.refresh();
+  //   });
+  // }
 
 }

@@ -3,5 +3,6 @@ export interface Cliente {
     customer: string;
     contactCustomer: string;
     date: Date;
+    dateFormated: string;
     category: string;
 }
