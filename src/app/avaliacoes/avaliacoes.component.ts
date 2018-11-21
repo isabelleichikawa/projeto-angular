@@ -18,8 +18,7 @@ export class AvaliacoesComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
-    private avaliacaoService: AvaliacaoService,
-    // private changeDetectorRefs: ChangeDetectorRef
+    private avaliacaoService: AvaliacaoService
   ) { }
 
   openDialog(evaluations = null): void {
@@ -50,13 +49,21 @@ export class AvaliacoesComponent implements OnInit {
     });
   }
 
-  edit(id: string) {
-  }
-
   remove(id: string) {
     this.avaliacaoService.delete(id).subscribe(result => {
       this.refresh();
     });
+  }
+
+  edit(objCustomer: any) {
+    const dialogRef = this.dialog.open(NovaAvaliacaoComponent, {
+      // data: objCustomer
+    });
+    dialogRef.componentInstance.data = objCustomer;
+    this.avaliacaoService.put(objCustomer.id, objCustomer.month, objCustomer.year, objCustomer.scale, objCustomer.reason, objCustomer.customer)
+      .subscribe(data => {
+    });
+    console.log(objCustomer);
   }
 
 }

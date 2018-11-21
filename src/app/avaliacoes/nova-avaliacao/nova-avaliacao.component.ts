@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, NgZone, ElementRef, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSelect } from '@angular/material';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Avaliacao } from '../shared/avaliacao.model';
 import { AvaliacaoService } from '../shared/avaliacao.service';
 import { ClienteService } from 'src/app/clientes/shared/cliente.service';
@@ -22,12 +22,22 @@ export class NovaAvaliacaoComponent implements OnInit {
   customersList = [];
   detailsCustomers = [];
 
+  form: FormGroup;
+
   constructor(
     public dialogRef: MatDialogRef<NovaAvaliacaoComponent>,
     private avaliacaoService: AvaliacaoService,
     private clienteService: ClienteService,
     @Inject(MAT_DIALOG_DATA) public data: Avaliacao,
-  ) { }
+  ) {
+    this.form = new FormGroup({
+      month: new FormControl(null),
+      year: new FormControl(null),
+      customers: new FormControl(null),
+      scale: new FormControl(null),
+      reason: new FormControl(null)
+    });
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
@@ -35,22 +45,28 @@ export class NovaAvaliacaoComponent implements OnInit {
 
   ngOnInit() {
     this.listCustomers();
+    if (this.data) {
+      // this.data.customers = this.form.value.customers;
+      this.form.patchValue(this.data);
+    }
   }
 
   save() {
-    if (!this.month.value || !this.year.value || !this.customers.value || this.customers.value.length <= 0 || !this.scale.nativeElement.value || !this.reason.nativeElement.value) {
+    const fData = this.form.value;
+    console.log(fData);
+    if (!fData.month || !fData.year || !fData.customers || fData.customers.length <= 0 || !fData.scale || !fData.reason) {
       return null;
     }
     const avaliacao = {
-      month: this.month.value,
-      year: this.year.value,
-      scale: this.scale.nativeElement.value,
-      reason: this.reason.nativeElement.value,
-      customers: this.customers.value
+      month: fData.month,
+      year: fData.year,
+      scale: fData.scale,
+      reason: fData.reason,
+      customers: fData.customers
     };
     this.avaliacaoService.post(avaliacao)
       .subscribe(data => {
-        this.dialogRef.close({ id: data.id });
+        this.dialogRef.close({ id: fData.id });
       });
   }
 

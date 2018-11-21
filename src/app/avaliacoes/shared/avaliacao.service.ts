@@ -21,9 +21,10 @@ export class AvaliacaoService {
     return this.http.post<any>(url, avaliacao);
   }
 
-  put(avaliacao: any): Observable<any> {
-    const url = '/evaluations';
-    return this.http.put<any>(url, avaliacao);
+  put(identifier: string, month: string, year: string, scale: number, reason: string, customers: []) {
+    const url = '/evaluations/' + (identifier ? identifier : '');
+    const body = {identifier: identifier, month: month, year: year, scale: scale, reason: reason, customers: customers};
+    return this.http.put<any>(url, body);
   }
 
   delete(identifier: string) {
