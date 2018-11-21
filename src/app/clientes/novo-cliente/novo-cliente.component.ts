@@ -35,9 +35,9 @@ export class NovoClienteComponent implements OnInit {
 
   ngOnInit() {
     // this.clienteService.get()
-    console.log(this.data);
+    // console.log(this.data);
     if (this.data) {
-        this.data.date = new Date(this.data.date);
+      this.data.date = new Date(this.data.date);
       this.form.patchValue(this.data);
     }
   }
@@ -47,13 +47,20 @@ export class NovoClienteComponent implements OnInit {
     console.log(fData);
     if (!fData.customer || !fData.contactCustomer || !fData.date) {
       return null;
+    } else if (this.data === null) {
+      console.log('novo cliente');
+      this.clienteService.post(fData.customer, fData.contactCustomer, fData.date)
+        .subscribe(data => {
+          this.dialogRef.close({ id: fData.id });
+        });
+    } else {
+      console.log('teste');
+      console.log(this.data);
+      this.clienteService.put(this.data.id, fData.customer, fData.contactCustomer, fData.date)
+        .subscribe(data => {
+          this.dialogRef.close({});
+        });
     }
-    this.clienteService.post(fData.customer, fData.contactCustomer, fData.date)
-      .subscribe(data => {
-        this.dialogRef.close({ id: fData.id });
-      });
   }
 
 }
-
-

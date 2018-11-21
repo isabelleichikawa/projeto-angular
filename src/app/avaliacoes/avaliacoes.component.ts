@@ -60,10 +60,12 @@ export class AvaliacoesComponent implements OnInit {
       // data: objCustomer
     });
     dialogRef.componentInstance.data = objCustomer;
-    this.avaliacaoService.put(objCustomer.id, objCustomer.month, objCustomer.year, objCustomer.scale, objCustomer.reason, objCustomer.customer)
-      .subscribe(data => {
+    // this.avaliacaoService.put(objCustomer.id, objCustomer.month, objCustomer.year, objCustomer.scale, objCustomer.reason, objCustomer.customer)
+    //   .subscribe(data => {
+    // });
+    dialogRef.afterClosed().subscribe(result => {
+      this.refresh();
     });
-    console.log(objCustomer);
   }
 
 }
