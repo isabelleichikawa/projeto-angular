@@ -45,27 +45,14 @@ export class NovoClienteComponent implements OnInit {
   save() {
     const fData = this.form.value;
     console.log(fData);
-    if (!this.customer.nativeElement.value || !this.contactCustomer.nativeElement.value || !this.date.nativeElement.value) {
+    if (!fData.customer || !fData.contactCustomer || !fData.date) {
       return null;
     }
-    this.clienteService.post(this.customer.nativeElement.value, this.contactCustomer.nativeElement.value, this.date.nativeElement.value)
+    this.clienteService.post(fData.customer, fData.contactCustomer, fData.date)
       .subscribe(data => {
-        this.dialogRef.close({ id: data.id });
+        this.dialogRef.close({ id: fData.id });
       });
   }
-
-  // edit(element: any) {
-  //   if (!this.customer.nativeElement.value || !this.contactCustomer.nativeElement.value || !this.date.nativeElement.value) {
-  //     return null;
-  //   }
-  //   this.clienteService.put(element.id, this.customer.nativeElement.value, this.contactCustomer.nativeElement.value, this.date.nativeElement.value)
-  //     .subscribe(data => {
-  //       // console.log(element.id);
-  //       // console.log(element.customer);
-  //       // this.dialogRef.close({ id: data.id });
-  //     });
-  // }
-
 
 }
 

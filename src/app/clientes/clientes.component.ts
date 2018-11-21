@@ -62,12 +62,7 @@ export class ClientesComponent implements OnInit {
     dialogRef.componentInstance.data = objCustomer;
     this.clienteService.put(objCustomer.id, objCustomer.customer, objCustomer.contactCustomer, objCustomer.date)
       .subscribe(data => {
-        // data = objCustomer;
     });
-    // dialogRef.afterClosed().subscribe(data => {
-    //   console.log('The dialog was closed');
-    //   this.refresh();
-    // });
   }
 
 }
