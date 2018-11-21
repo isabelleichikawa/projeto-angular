@@ -16,15 +16,15 @@ export class ClienteService {
     return this.http.get<Cliente[]>(url);
   }
 
-  post(customer: string, contactCustomer: string, date: Date): Observable<any> {
+  post(cliente: any, category: string): Observable<any> {
     const url = '/customers';
-    const body = {customer: customer, contactCustomer: contactCustomer, date: date};
+    const body = {customer: cliente.customer, contactCustomer: cliente.contactCustomer, date: cliente.date, category: category};
     return this.http.post<any>(url, body);
   }
 
-  put(identifier: string, customer: string, contactCustomer: string, date: Date) {
+  put(identifier: string, cliente: any, category: string) {
     const url = '/customers/' + (identifier ? identifier : '');
-    const body = {customer: customer, contactCustomer: contactCustomer, date: date};
+    const body = {customer: cliente.customer, contactCustomer: cliente.contactCustomer, date: cliente.date, category: category};
     return this.http.put<any>(url, body);
   }
 

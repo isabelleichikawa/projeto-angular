@@ -70,7 +70,6 @@ export class NovaAvaliacaoComponent implements OnInit {
     if (!fData.month || !fData.year || !this.customerSelected || this.customerSelected.length <= 0 || !fData.scale || !fData.reason) {
       return null;
     } else if (this.data === null) {
-      // console.log('novo');
       const avaliacao = {
         month: fData.month,
         year: fData.year,

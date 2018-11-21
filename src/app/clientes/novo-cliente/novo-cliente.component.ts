@@ -49,12 +49,22 @@ export class NovoClienteComponent implements OnInit {
       return null;
     } else if (this.data === null) {
       // console.log('novo cliente');
-      this.clienteService.post(fData.customer, fData.contactCustomer, fData.date)
+      const cliente = {
+        customer: fData.customer,
+        contactCustomer: fData.contactCustomer,
+        date: fData.date
+      };
+      this.clienteService.post(cliente, 'Nenhum')
         .subscribe(data => {
           this.dialogRef.close({ id: fData.id });
         });
     } else {
-      this.clienteService.put(this.data.id, fData.customer, fData.contactCustomer, fData.date)
+      const cliente = {
+        customer: fData.customer,
+        contactCustomer: fData.contactCustomer,
+        date: fData.date
+      };
+      this.clienteService.put(this.data.id, cliente, this.data.category)
         .subscribe(data => {
           this.dialogRef.close({});
         });
