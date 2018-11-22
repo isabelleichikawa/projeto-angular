@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { Cliente } from '../shared/cliente.model';
 import { ClienteService } from '../shared/cliente.service';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -20,6 +20,7 @@ export class NovoClienteComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<NovoClienteComponent>,
+    public snackBar: MatSnackBar,
     private clienteService: ClienteService
   ) {
 
@@ -58,10 +59,16 @@ export class NovoClienteComponent implements OnInit {
         .subscribe(data => {
           this.dialogRef.close(true);
         });
+        this.snackBar.open('Cliente cadastrado com sucesso!', 'Ok', {
+          duration: 2500,
+        });
     } else {
       this.clienteService.put(this.data.id, cliente)
         .subscribe(data => {
           this.dialogRef.close(true);
+        });
+        this.snackBar.open('Cliente alterado com sucesso!', 'Ok', {
+          duration: 2500,
         });
     }
   }

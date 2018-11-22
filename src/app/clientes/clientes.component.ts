@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { NovoClienteComponent } from './novo-cliente/novo-cliente.component';
 import { ClienteService } from './shared/cliente.service';
 import { Cliente } from './shared/cliente.model';
@@ -21,6 +21,7 @@ export class ClientesComponent implements OnInit {
 
   constructor(
     public dialog: MatDialog,
+    public snackBar: MatSnackBar,
     private clienteService: ClienteService
   ) { }
 
@@ -64,6 +65,9 @@ export class ClientesComponent implements OnInit {
   remove(id: string) {
     this.clienteService.delete(id).subscribe(result => {
       this.refresh();
+    });
+    this.snackBar.open('Cliente removido com sucesso!', 'Ok', {
+      duration: 2500,
     });
   }
 
