@@ -3,40 +3,40 @@
   <form [formGroup]="form">
     <div mat-dialog-content>
       <mat-form-field>
-        <mat-select #month placeholder="Mês" formControlName="month">
-          <mat-option value="Janeiro">Janeiro</mat-option>
-          <mat-option value="Fevereiro">Fevereiro</mat-option>
-          <mat-option value="Março">Março</mat-option>
-          <mat-option value="Abril">Abril</mat-option>
-          <mat-option value="Maio">Maio</mat-option>
-          <mat-option value="Junho">Junho</mat-option>
-          <mat-option value="Julho">Julho</mat-option>
-          <mat-option value="Agosto">Agosto</mat-option>
-          <mat-option value="Setembro">Setembro</mat-option>
-          <mat-option value="Setembro">Setembro</mat-option>
-          <mat-option value="Novembro">Novembro</mat-option>
-          <mat-option value="Dezembro">Dezembro</mat-option>
+        <mat-select #month placeholder="Mês" formControlName="month" (selectionChange)="selectMonth($event.value)">
+          <mat-option [value]="0">Janeiro</mat-option>
+          <mat-option [value]="1">Fevereiro</mat-option>
+          <mat-option [value]="2">Março</mat-option>
+          <mat-option [value]="3">Abril</mat-option>
+          <mat-option [value]="4">Maio</mat-option>
+          <mat-option [value]="5">Junho</mat-option>
+          <mat-option [value]="6">Julho</mat-option>
+          <mat-option [value]="7">Agosto</mat-option>
+          <mat-option [value]="8">Setembro</mat-option>
+          <mat-option [value]="9">Setembro</mat-option>
+          <mat-option [value]="10">Novembro</mat-option>
+          <mat-option [value]="11">Dezembro</mat-option>
         </mat-select>
       </mat-form-field> &nbsp;
 
       <mat-form-field>
-        <mat-select #year placeholder="Ano" formControlName="year">
-          <mat-option value="2018">2018</mat-option>
+        <mat-select #year placeholder="Ano" formControlName="year" (selectionChange)="selectYear($event.value)">
+          <mat-option [value]="2018">2018</mat-option>
         </mat-select>
       </mat-form-field>
       <br>
 
-      <mat-form-field class="example-full-width">
+      <!-- <mat-form-field class="example-full-width">
         <input #customers type="text" placeholder="Clientes" matInput formControlName="customers" [formControl]="myControl" [matAutocomplete]="auto">
         <mat-autocomplete  #auto="matAutocomplete" >
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option.customer" (click)="selectCustomer(option)">
             {{option.customer}}
           </mat-option>
         </mat-autocomplete>
-      </mat-form-field>
+      </mat-form-field> -->
 
       <mat-list role="list">
-          <mat-list-item role="listitem" *ngFor="let customer of customerSelected">{{customer}}</mat-list-item>
+          <mat-list-item role="listitem" *ngFor="let customer of customersFiltered">{{customer}}</mat-list-item>
       </mat-list>
 
       <mat-form-field class="example-full-width">

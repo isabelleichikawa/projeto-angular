@@ -45,13 +45,13 @@ export class NovoClienteComponent implements OnInit {
     const fData = this.form.value;
     if (!fData.customer || !fData.contactCustomer || !fData.date)
       return;
-    const answers = this.data.answers || [];
+    const answers = this.data ? this.data.answers || [] : [];
     const cliente = {
       customer: fData.customer,
       contactCustomer: fData.contactCustomer,
       date: fData.date,
       answers: answers,
-      category: this.data.category || 'Nenhum'
+      category: this.data ? this.data.category || 'Nenhum' : 'Nenhum'
     };
     if (!this.data) {
       this.clienteService.post(cliente)

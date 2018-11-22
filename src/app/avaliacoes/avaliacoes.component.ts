@@ -37,7 +37,8 @@ export class AvaliacoesComponent implements OnInit {
     });
     dialogRef.componentInstance.data = avaliacao;
     dialogRef.afterClosed().subscribe(result => {
-      this.refresh();
+      if (result)
+        this.refresh();
     });
   }
 
