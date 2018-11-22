@@ -4,6 +4,7 @@ import { NovoClienteComponent } from './novo-cliente/novo-cliente.component';
 import { ClienteService } from './shared/cliente.service';
 import { Cliente } from './shared/cliente.model';
 import * as moment from 'moment';
+import { NovaRespostaComponent } from './nova-resposta/nova-resposta.component';
 
 @Component({
   selector: 'app-clientes',
@@ -42,6 +43,16 @@ export class ClientesComponent implements OnInit {
     });
   }
 
+  openDialogNV(customer: any = null): void {
+    const dialogRef = this.dialog.open(NovaRespostaComponent, {
+      data: customer
+    });
+    // dialogRef.componentInstance.data = customer;
+    // dialogRef.afterClosed().subscribe(result => {
+    //   this.refresh();
+    // });
+  }
+
   ngOnInit() {
     this.refresh();
   }
@@ -65,10 +76,6 @@ export class ClientesComponent implements OnInit {
     this.clienteService.delete(id).subscribe(result => {
       this.refresh();
     });
-  }
-
-  function() {
-    console.log('teste');
   }
 
 }

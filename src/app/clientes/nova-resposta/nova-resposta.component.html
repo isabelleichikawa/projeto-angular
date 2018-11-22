@@ -1,3 +1,27 @@
-<p>
-  nova-resposta works!
-</p>
+<div class="form">
+  <h1 mat-dialog-title>Cadastro de Resposta</h1>
+
+  <form [formGroup]="form">
+    <div mat-dialog-content>
+      <mat-form-field>
+        <input #date matInput [matDatepicker]="picker" placeholder="Selecione a data" formControlName="date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <p>Em uma escala de 0 a 10, qual a probabilidade de você recomendar nosso produto/serviço a um amigo/conhecido?</p>
+        <input #scale matInput type="number"
+          min="0" max="10" formControlName="scale">
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <textarea #reason matInput placeholder="Qual é o motivo dessa nota?" formControlName="reason"></textarea>
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="buttons">
+      <button mat-button (click)="onNoClick()">Cancelar</button>
+      <button mat-button (click)="save()" cdkFocusInitial color="primary">Ok</button>
+    </div>
+  </form>
+</div>

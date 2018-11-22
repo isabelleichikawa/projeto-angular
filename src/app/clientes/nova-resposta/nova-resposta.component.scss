@@ -1,0 +1,15 @@
+.form {
+    min-width: 150px;
+    max-width: 350px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }

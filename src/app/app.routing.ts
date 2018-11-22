@@ -6,7 +6,8 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { AvaliacoesComponent } from './avaliacoes/avaliacoes.component';
 import { NovaAvaliacaoComponent } from './avaliacoes/nova-avaliacao/nova-avaliacao.component';
 import { NovoClienteComponent } from './clientes/novo-cliente/novo-cliente.component';
-import { NovaRespostaComponent } from './nova-resposta/nova-resposta.component';
+import { NovaRespostaComponent } from './clientes/nova-resposta/nova-resposta.component';
+
 
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
