@@ -6,6 +6,7 @@ import { AvaliacaoService } from '../shared/avaliacao.service';
 import { ClienteService } from 'src/app/clientes/shared/cliente.service';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-nova-avaliacao',
@@ -112,11 +113,43 @@ export class NovaAvaliacaoComponent implements OnInit {
       for (let i = 0; i < keys.length; i++) {
         const customer = { id: keys[i], ...values[i] };
         this.customersList.push(customer);
-        console.log('teste');
         console.log(customer);
       }
       this.form.controls.customers.reset();
     });
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.options.filter(option => option.customer.toLowerCase().includes(filterValue));
+  }
+
+  clearCustomer(setFocus: boolean = true) {
+    this.customers.nativeElement.value = '';
+    if (setFocus)
+      this.customers.nativeElement.focus();
+    this.form.controls.customers.reset();
+    this.form.controls.customers.setValue('');
+  }
+
+  selectYear(year) {
+    console.log(year);
+  }
+
+  selectMonth(month) {
+    for (let i = 0; i < this.customersList.length; i++) {
+      if (!this.customersList[i].answers)
+        continue;
+      for (let j = 0; j < this.customersList[i].answers.length; j++) {
+        console.log(this.customersList[i].answers[j].date);
+        if (month === moment(this.customersList[i].answers[j].date).month()) {
+          this.customersFiltered.push(this.customersList[i]);
+        }
+        console.log(moment(this.customersList[i].answers[j].date).month());
+      }
+    }
+    // console.log(this.customersList);
+    console.log(month);
   }
 
   // setCategoryCustomer(customerSelected: any) {
@@ -136,33 +169,12 @@ export class NovaAvaliacaoComponent implements OnInit {
   //   });
   // }
 
-  private _filter(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.customer.toLowerCase().includes(filterValue));
-  }
-
   // selectCustomer(customer: any) {
   //   this.customerSelected[this.i++] = customer.customer;
   //   this.clearCustomer();
   //   console.log(this.customerSelected);
   // }
 
-  clearCustomer(setFocus: boolean = true) {
-    this.customers.nativeElement.value = '';
-    if (setFocus)
-      this.customers.nativeElement.focus();
-    this.form.controls.customers.reset();
-    this.form.controls.customers.setValue('');
-  }
-
-  selectYear(year) {
-    console.log(year);
-  }
-
-  selectMonth(month) {
-
-    console.log(month);
-  }
 
 }
 
