@@ -4,6 +4,7 @@ import { ClienteService } from '../shared/cliente.service';
 import * as moment from 'moment';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Cliente } from '../shared/cliente.model';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-nova-resposta',
@@ -23,6 +24,7 @@ export class NovaRespostaComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<NovaRespostaComponent>,
+    public snackBar: MatSnackBar,
     private clienteService: ClienteService
   ) {
     this.form = new FormGroup({
@@ -47,12 +49,17 @@ export class NovaRespostaComponent implements OnInit {
     const fData = this.form.value;
     const isValidDate = this.isValidDate(fData.date, this.data);
     if (!fData.scale || !fData.date || !fData.reason || !isValidDate) {
-      console.log(!fData.scale);
-      console.log(!isValidDate);
-      console.log('não foi');
+      if (!fData.scale || !fData.date || !fData.reason) {
+        this.snackBar.open('Preencha todos os campos!', 'Ok', {
+          duration: 5000,
+        });
+      } else {
+        this.snackBar.open('Data inválida', 'Ok', {
+          duration: 5000,
+        });
+      }
       return;
     }
-    console.log('foi');
     const category = fData.scale <= 6 ? 'Detrator' : fData.scale <= 8 ? 'Neutro' : 'Promotor';
     const answers = this.data.answers || [];
     answers.push({ date: fData.date.toISOString(), category: category, scale: fData.scale, reason: fData.reason });
@@ -70,6 +77,9 @@ export class NovaRespostaComponent implements OnInit {
       .subscribe(data => {
         this.dialogRef.close(true);
       });
+    this.snackBar.open('Resposta cadastrado com sucesso', 'Ok', {
+      duration: 2500,
+    });
   }
 
   isValidDate(date, customer: any) {

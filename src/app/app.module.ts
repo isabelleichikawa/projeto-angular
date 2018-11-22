@@ -16,7 +16,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatListModule} from '@angular/material/list';
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -68,6 +67,7 @@ import { NovaRespostaComponent } from './clientes/nova-resposta/nova-resposta.co
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatListModule,
+    MatSnackBarModule,
     routing
   ],
   exports: [
