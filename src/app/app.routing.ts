@@ -6,15 +6,20 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { AvaliacoesComponent } from './avaliacoes/avaliacoes.component';
 import { NovaAvaliacaoComponent } from './avaliacoes/nova-avaliacao/nova-avaliacao.component';
 import { NovoClienteComponent } from './clientes/novo-cliente/novo-cliente.component';
+import { NovaRespostaComponent } from './nova-resposta/nova-resposta.component';
 
 const APP_ROUTES: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     {
         path: 'home', component: HomeComponent, children: [
-            { path: 'clientes', component: ClientesComponent, children: [{ path: 'novo-cliente', component: NovoClienteComponent }] },
-            { path: 'avaliacoes', component: AvaliacoesComponent, children: [{ path: 'nova-avaliacao', component: NovaAvaliacaoComponent }] },
-            { path: '', redirectTo: 'clientes', pathMatch: 'full' }
-        ]
+            {
+                path: 'clientes', component: ClientesComponent, children: [
+                    { path: 'novo-cliente', component: NovoClienteComponent },
+                    { path: 'nova-resposta', component: NovaRespostaComponent }]
+            },
+    { path: 'avaliacoes', component: AvaliacoesComponent, children: [{ path: 'nova-avaliacao', component: NovaAvaliacaoComponent }] },
+    { path: '', redirectTo: 'clientes', pathMatch: 'full' }
+]
     }
 ];
 

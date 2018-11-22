@@ -67,17 +67,9 @@ export class ClientesComponent implements OnInit {
     });
   }
 
-  // edit(objCustomer: any) {
-  //   const dialogRef = this.dialog.open(NovoClienteComponent, {
-  //   });
-  //   dialogRef.componentInstance.data = objCustomer;
-  //   // this.clienteService.put(objCustomer.id, objCustomer.customer, objCustomer.contactCustomer, objCustomer.date)
-  //   //   .subscribe(data => {
-  //   // });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     this.refresh();
-  //   });
-  // }
+  function() {
+    console.log('teste');
+  }
 
 }
 

@@ -31,6 +31,7 @@ import { ClienteService } from './clientes/shared/cliente.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpInterceptorProviders } from './http-interceptors';
 import { AvaliacaoService } from './avaliacoes/shared/avaliacao.service';
+import { NovaRespostaComponent } from './clientes/nova-resposta/nova-resposta.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { AvaliacaoService } from './avaliacoes/shared/avaliacao.service';
     AvaliacoesComponent,
     MenuComponent,
     NovoClienteComponent,
-    NovaAvaliacaoComponent
+    NovaAvaliacaoComponent,
+    NovaRespostaComponent
   ],
   imports: [
     BrowserModule,

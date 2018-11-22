@@ -25,12 +25,6 @@
         </mat-select>
       </mat-form-field>
       <br>
-      <!-- <mat-form-field class="example-full-width">
-        <!-- <mat-select placeholder="Clientes" [formControl]="toppings" multiple> --
-        <mat-select #customers placeholder="Clientes" multiple formControlName="customers">
-          <mat-option *ngFor="let customer of customersList" [value]="customer">{{customer}}</mat-option>
-        </mat-select>
-      </mat-form-field> -->
 
       <mat-form-field class="example-full-width">
         <input #customers type="text" placeholder="Clientes" matInput formControlName="customers" [formControl]="myControl" [matAutocomplete]="auto">
