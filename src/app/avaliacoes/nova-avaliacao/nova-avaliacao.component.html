@@ -13,7 +13,7 @@
           <mat-option [value]="6">Julho</mat-option>
           <mat-option [value]="7">Agosto</mat-option>
           <mat-option [value]="8">Setembro</mat-option>
-          <mat-option [value]="9">Setembro</mat-option>
+          <mat-option [value]="9">Outubro</mat-option>
           <mat-option [value]="10">Novembro</mat-option>
           <mat-option [value]="11">Dezembro</mat-option>
         </mat-select>
@@ -26,6 +26,8 @@
       </mat-form-field>
       <br>
 
+      <p *ngIf="!existAnswers">Não existem respostas para esta data!</p>
+
       <!-- <mat-form-field class="example-full-width">
         <input #customers type="text" placeholder="Clientes" matInput formControlName="customers" [formControl]="myControl" [matAutocomplete]="auto">
         <mat-autocomplete  #auto="matAutocomplete" >
@@ -35,8 +37,11 @@
         </mat-autocomplete>
       </mat-form-field> -->
 
-      <mat-list role="list">
-          <mat-list-item role="listitem" *ngFor="let customer of customersFiltered">{{customer.customer}}</mat-list-item>
+      <mat-list role="list" *ngIf="existAnswers">
+          <mat-list-item role="listitem" *ngFor="let customer of customersFiltered">
+            {{customer.customer}}
+            <mat-divider></mat-divider>
+          </mat-list-item>
       </mat-list>
 
       <mat-form-field class="example-full-width">

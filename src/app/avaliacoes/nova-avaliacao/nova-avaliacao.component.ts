@@ -27,21 +27,24 @@ export class NovaAvaliacaoComponent implements OnInit {
   detailsCustomers = [];
   // customerSelected = [];
   i = 0;
+  monthSelected: number;
+  yearSelected: number;
+  existAnswers = false;
 
-  months: [
-    'Janeiro',
-    'Fevereiro',
-    'Março',
-    'Abril',
-    'Maior',
-    'Junho',
-    'Julho',
-    'Agosto',
-    'Setembro',
-    'Outubro',
-    'Novembro',
-    'Dezembro'
-  ];
+  // months: [
+  //   'Janeiro',
+  //   'Fevereiro',
+  //   'Março',
+  //   'Abril',
+  //   'Maior',
+  //   'Junho',
+  //   'Julho',
+  //   'Agosto',
+  //   'Setembro',
+  //   'Outubro',
+  //   'Novembro',
+  //   'Dezembro'
+  // ];
 
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
@@ -56,8 +59,8 @@ export class NovaAvaliacaoComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: Avaliacao,
   ) {
     this.form = new FormGroup({
-      month: new FormControl(10),
-      year: new FormControl(2018),
+      month: new FormControl(null),
+      year: new FormControl(null),
       customers: new FormControl(null),
       scale: new FormControl(null),
       reason: new FormControl(null)
@@ -86,6 +89,7 @@ export class NovaAvaliacaoComponent implements OnInit {
     if (!fData.month || !fData.year || !fData.scale || !fData.reason) {
       return null;
     }
+
     const avaliacao = {
       month: fData.month,
       year: fData.year,
@@ -133,23 +137,28 @@ export class NovaAvaliacaoComponent implements OnInit {
   }
 
   selectYear(year) {
-    console.log(year);
+    this.yearSelected = year;
+    this.checkAnswers();
   }
 
   selectMonth(month) {
+    this.monthSelected = month;
+    this.checkAnswers();
+  }
+
+  checkAnswers() {
+    this.customersFiltered = [];
     for (let i = 0; i < this.customersList.length; i++) {
       if (!this.customersList[i].answers)
         continue;
       for (let j = 0; j < this.customersList[i].answers.length; j++) {
-        console.log(this.customersList[i].answers[j].date);
-        if (month === moment(this.customersList[i].answers[j].date).month()) {
+        const date = moment(this.customersList[i].answers[j].date);
+        if (this.monthSelected === date.month() && this.yearSelected === date.year()) {
           this.customersFiltered.push(this.customersList[i]);
         }
-        console.log(moment(this.customersList[i].answers[j].date).month());
       }
     }
-    // console.log(this.customersList);
-    console.log(month);
+    this.existAnswers = this.customersFiltered.length > 0;
   }
 
   // setCategoryCustomer(customerSelected: any) {
@@ -174,7 +183,6 @@ export class NovaAvaliacaoComponent implements OnInit {
   //   this.clearCustomer();
   //   console.log(this.customerSelected);
   // }
-
 
 }
 
