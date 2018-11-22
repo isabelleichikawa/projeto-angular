@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Cliente } from '../shared/cliente.model';
 import { ClienteService } from '../shared/cliente.service';
 import { FormGroup, FormControl } from '@angular/forms';
+import { stringify } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-novo-cliente',
@@ -29,14 +30,11 @@ export class NovoClienteComponent implements OnInit {
     });
   }
 
-
   onNoClick(): void {
     this.dialogRef.close(false);
   }
 
   ngOnInit() {
-    // this.clienteService.get()
-    // console.log(this.data);
     if (this.data) {
       this.data.date = new Date(this.data.date);
       this.form.patchValue(this.data);
@@ -45,16 +43,15 @@ export class NovoClienteComponent implements OnInit {
 
   save() {
     const fData = this.form.value;
-    // console.log(fData);
     if (!fData.customer || !fData.contactCustomer || !fData.date)
       return;
-
+    const answers = this.data.answers || [];
     const cliente = {
       customer: fData.customer,
       contactCustomer: fData.contactCustomer,
       date: fData.date,
-      answers: [],
-      category: 'Nenhum'
+      answers: answers,
+      category: this.data.category || 'Nenhum'
     };
     if (!this.data) {
       this.clienteService.post(cliente)

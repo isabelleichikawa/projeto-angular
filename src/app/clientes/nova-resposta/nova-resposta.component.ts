@@ -36,7 +36,6 @@ export class NovaRespostaComponent implements OnInit {
     if (this.data) {
       this.data.date = new Date(this.data.date);
       this.form.patchValue(this.data);
-      console.log(this.data);
     }
   }
 
