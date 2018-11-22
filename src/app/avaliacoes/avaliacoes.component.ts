@@ -31,11 +31,11 @@ export class AvaliacoesComponent implements OnInit {
   //   });
   // }
 
-  openDialog(customer: any = null): void {
+  openDialog(avaliacao: any = null): void {
     const dialogRef = this.dialog.open(NovaAvaliacaoComponent, {
-      data: customer
+      data: avaliacao
     });
-    dialogRef.componentInstance.data = customer;
+    dialogRef.componentInstance.data = avaliacao;
     dialogRef.afterClosed().subscribe(result => {
       this.refresh();
     });

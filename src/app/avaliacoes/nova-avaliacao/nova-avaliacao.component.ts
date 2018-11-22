@@ -93,6 +93,7 @@ export class NovaAvaliacaoComponent implements OnInit {
         .subscribe(data => {
           this.dialogRef.close({});
         });
+      // console.log(this.customerSelected);
     }
   }
 
@@ -101,19 +102,36 @@ export class NovaAvaliacaoComponent implements OnInit {
       const keys = Object.keys(result);
       const values = Object.values(result);
       for (let i = 0; i < keys.length; i++) {
-        this.customersList.push(values[i].customer);
+        this.customersList.push({ id: keys[i], ...values[i] });
       }
       this.form.controls.customers.reset();
     });
   }
 
+  // setCategoryCustomer(customerSelected: any) {
+  //   const fData = this.form.value;
+  //   this.clienteService.get().subscribe(result => {
+  //     const keys = Object.keys(result);
+  //     const values = Object.values(result);
+  //     for (let i = 0; i < keys.length; i++) {
+  //       for (let j = 0; j < customerSelected.length; j++) {
+  //         if (values[i].customer === customerSelected[j]) {
+  //           console.log(j + customerSelected[j]);
+  //           console.log('teste');
+  //           console.log(keys[i]);
+  //         }
+  //       }
+  //     }
+  //   });
+  // }
+
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-    return this.options.filter(option => option.toLowerCase().includes(filterValue));
+    return this.options.filter(option => option.customer.toLowerCase().includes(filterValue));
   }
 
-  selectCustomer(customer: string) {
-    this.customerSelected[this.i++] = customer;
+  selectCustomer(customer: any) {
+    this.customerSelected[this.i++] = customer.customer;
     this.clearCustomer();
     console.log(this.customerSelected);
   }

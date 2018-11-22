@@ -35,8 +35,8 @@
       <mat-form-field class="example-full-width">
         <input #customers type="text" placeholder="Clientes" matInput formControlName="customers" [formControl]="myControl" [matAutocomplete]="auto">
         <mat-autocomplete  #auto="matAutocomplete" >
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option" (click)="selectCustomer(option)">
-            {{option}}
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option.customer" (click)="selectCustomer(option)">
+            {{option.customer}}
           </mat-option>
         </mat-autocomplete>
       </mat-form-field>
