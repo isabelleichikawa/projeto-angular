@@ -5,4 +5,5 @@ export interface Cliente {
     date: Date;
     dateFormated: string;
     category: string;
+    answers: any[];
 }

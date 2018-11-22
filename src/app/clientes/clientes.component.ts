@@ -24,33 +24,22 @@ export class ClientesComponent implements OnInit {
     private clienteService: ClienteService
   ) { }
 
-  // openDialog(customer = null): void {
-  //   const dialogRef = this.dialog.open(NovoClienteComponent, {
-  //     data: customer
-  //   });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     this.refresh();
-  //   });
-  // }
-
   openDialog(customer: any = null): void {
-    const dialogRef = this.dialog.open(NovoClienteComponent, {
-      data: customer
-    });
+    const dialogRef = this.dialog.open(NovoClienteComponent);
     dialogRef.componentInstance.data = customer;
     dialogRef.afterClosed().subscribe(result => {
-      this.refresh();
+      if (result)
+        this.refresh();
     });
   }
 
   openDialogNV(customer: any = null): void {
-    const dialogRef = this.dialog.open(NovaRespostaComponent, {
-      data: customer
+    const dialogRef = this.dialog.open(NovaRespostaComponent);
+    dialogRef.componentInstance.data = customer;
+    dialogRef.afterClosed().subscribe(result => {
+      if (result)
+        this.refresh();
     });
-    // dialogRef.componentInstance.data = customer;
-    // dialogRef.afterClosed().subscribe(result => {
-    //   this.refresh();
-    // });
   }
 
   ngOnInit() {

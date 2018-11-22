@@ -15,11 +15,11 @@ export class NovoClienteComponent implements OnInit {
   @ViewChild('contactCustomer') contactCustomer: ElementRef;
   @ViewChild('date') date: ElementRef;
   form: FormGroup;
+  data: Cliente;
 
   constructor(
     public dialogRef: MatDialogRef<NovoClienteComponent>,
-    private clienteService: ClienteService,
-    @Inject(MAT_DIALOG_DATA) public data: Cliente
+    private clienteService: ClienteService
   ) {
 
     this.form = new FormGroup({
@@ -31,7 +31,7 @@ export class NovoClienteComponent implements OnInit {
 
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   ngOnInit() {
@@ -46,28 +46,25 @@ export class NovoClienteComponent implements OnInit {
   save() {
     const fData = this.form.value;
     // console.log(fData);
-    if (!fData.customer || !fData.contactCustomer || !fData.date) {
-      return null;
-    } else if (this.data === null) {
-      // console.log('novo cliente');
-      const cliente = {
-        customer: fData.customer,
-        contactCustomer: fData.contactCustomer,
-        date: fData.date
-      };
-      this.clienteService.post(cliente, 'Nenhum')
+    if (!fData.customer || !fData.contactCustomer || !fData.date)
+      return;
+
+    const cliente = {
+      customer: fData.customer,
+      contactCustomer: fData.contactCustomer,
+      date: fData.date,
+      answers: [],
+      category: 'Nenhum'
+    };
+    if (!this.data) {
+      this.clienteService.post(cliente)
         .subscribe(data => {
-          this.dialogRef.close({ id: fData.id });
+          this.dialogRef.close(true);
         });
     } else {
-      const cliente = {
-        customer: fData.customer,
-        contactCustomer: fData.contactCustomer,
-        date: fData.date
-      };
-      this.clienteService.put(this.data.id, cliente, this.data.category)
+      this.clienteService.put(this.data.id, cliente)
         .subscribe(data => {
-          this.dialogRef.close({});
+          this.dialogRef.close(true);
         });
     }
   }

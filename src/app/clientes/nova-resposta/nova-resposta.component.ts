@@ -19,11 +19,11 @@ export class NovaRespostaComponent implements OnInit {
   form: FormGroup;
 
   customers = [];
+  data: Cliente;
 
   constructor(
     public dialogRef: MatDialogRef<NovaRespostaComponent>,
-    private clienteService: ClienteService,
-    @Inject(MAT_DIALOG_DATA) public data: Cliente
+    private clienteService: ClienteService
   ) {
     this.form = new FormGroup({
       date: new FormControl(new Date()),
@@ -41,21 +41,28 @@ export class NovaRespostaComponent implements OnInit {
   }
 
   onNoClick(): void {
-    this.dialogRef.close();
+    this.dialogRef.close(false);
   }
 
   save() {
     const fData = this.form.value;
-    console.log(fData);
-    // const cliente = {
-    //   customer: fData.customer,
-    //   contactCustomer: fData.contactCustomer,
-    //   date: fData.date
-    // };
-    // this.clienteService.put(this.data.id, cliente, this.data.category)
-    //   .subscribe(data => {
-    //     this.dialogRef.close({});
-    //   });
+    const category = fData.scale <= 6 ? 'Detrator' : fData.scale <= 8 ? 'Neutro' : 'Promotor';
+    const answers = this.data.answers || [];
+    answers.push({ date: fData.date.toISOString(), category: category, scale: fData.scale, reason: fData.reason });
+    answers.sort((a, b) => {
+      return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
+    });
+    const cliente = {
+      customer: this.data.customer,
+      contactCustomer: this.data.contactCustomer,
+      date: this.data.date,
+      category: answers[answers.length - 1].category,
+      answers: answers
+    };
+    this.clienteService.put(this.data.id, cliente)
+      .subscribe(data => {
+        this.dialogRef.close(true);
+      });
   }
 
 }
