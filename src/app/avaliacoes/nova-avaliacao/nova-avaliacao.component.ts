@@ -117,7 +117,7 @@ export class NovaAvaliacaoComponent implements OnInit {
       for (let i = 0; i < keys.length; i++) {
         const customer = { id: keys[i], ...values[i] };
         this.customersList.push(customer);
-        console.log(customer);
+        // console.log(this.customersList);
       }
       this.form.controls.customers.reset();
     });
@@ -154,11 +154,21 @@ export class NovaAvaliacaoComponent implements OnInit {
       for (let j = 0; j < this.customersList[i].answers.length; j++) {
         const date = moment(this.customersList[i].answers[j].date);
         if (this.monthSelected === date.month() && this.yearSelected === date.year()) {
-          this.customersFiltered.push(this.customersList[i]);
+          const customer = {
+            customer: this.customersList[i].customer,
+            contactCustomer: this.customersList[i].contactCustomer,
+            date: this.customersList[i].date,
+            category: this.customersList[i].category,
+            answers: [
+              this.customersList[i].answers[j]
+            ]
+          };
+          this.customersFiltered.push(customer);
         }
       }
     }
     this.existAnswers = this.customersFiltered.length > 0;
+    console.log(this.customersFiltered);
   }
 
   // setCategoryCustomer(customerSelected: any) {

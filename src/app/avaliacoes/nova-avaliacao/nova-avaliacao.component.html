@@ -38,10 +38,11 @@
       </mat-form-field> -->
 
       <mat-list role="list" *ngIf="existAnswers">
-          <mat-list-item role="listitem" *ngFor="let customer of customersFiltered">
-            {{customer.customer}}
-            <mat-divider></mat-divider>
-          </mat-list-item>
+        <mat-list-item role="listitem" *ngFor="let customer of customersFiltered">
+          <p mat-line>{{customer.customer}}</p>
+          <p mat-line>{{customer.answers[0].scale}}</p>
+          <mat-divider></mat-divider>
+        </mat-list-item>
       </mat-list>
 
       <mat-form-field class="example-full-width">
