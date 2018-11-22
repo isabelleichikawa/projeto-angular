@@ -18,33 +18,16 @@ export class NovaAvaliacaoComponent implements OnInit {
   @ViewChild('month') month: MatSelect;
   @ViewChild('year') year: MatSelect;
   @ViewChild('customers') customers: ElementRef;
-  @ViewChild('scale') scale: ElementRef;
-  @ViewChild('reason') reason: ElementRef;
 
   toppings = new FormControl();
   customersList = [];
   customersFiltered = [];
   detailsCustomers = [];
-  // customerSelected = [];
   i = 0;
   monthSelected: number;
   yearSelected: number;
   existAnswers = false;
 
-  // months: [
-  //   'Janeiro',
-  //   'Fevereiro',
-  //   'Março',
-  //   'Abril',
-  //   'Maior',
-  //   'Junho',
-  //   'Julho',
-  //   'Agosto',
-  //   'Setembro',
-  //   'Outubro',
-  //   'Novembro',
-  //   'Dezembro'
-  // ];
 
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
@@ -61,9 +44,7 @@ export class NovaAvaliacaoComponent implements OnInit {
     this.form = new FormGroup({
       month: new FormControl(null),
       year: new FormControl(null),
-      customers: new FormControl(null),
-      scale: new FormControl(null),
-      reason: new FormControl(null)
+      customers: new FormControl(null)
     });
   }
 
@@ -74,7 +55,6 @@ export class NovaAvaliacaoComponent implements OnInit {
   ngOnInit() {
     this.listCustomers();
     if (this.data) {
-      // this.data.customers = this.form.value.customers;
       this.form.patchValue(this.data);
     }
     this.filteredOptions = this.myControl.valueChanges
@@ -86,15 +66,14 @@ export class NovaAvaliacaoComponent implements OnInit {
 
   save() {
     const fData = this.form.value;
-    if (!fData.month || !fData.year || !fData.scale || !fData.reason) {
+    if (!fData.month || !fData.year) {
       return null;
     }
 
     const avaliacao = {
       month: fData.month,
       year: fData.year,
-      scale: fData.scale,
-      reason: fData.reason
+      customers: this.customersFiltered
     };
     if (this.data === null) {
       this.avaliacaoService.post(avaliacao)
@@ -106,7 +85,6 @@ export class NovaAvaliacaoComponent implements OnInit {
         .subscribe(data => {
           this.dialogRef.close(true);
         });
-      // console.log(this.customerSelected);
     }
   }
 
@@ -170,29 +148,6 @@ export class NovaAvaliacaoComponent implements OnInit {
     this.existAnswers = this.customersFiltered.length > 0;
     console.log(this.customersFiltered);
   }
-
-  // setCategoryCustomer(customerSelected: any) {
-  //   const fData = this.form.value;
-  //   this.clienteService.get().subscribe(result => {
-  //     const keys = Object.keys(result);
-  //     const values = Object.values(result);
-  //     for (let i = 0; i < keys.length; i++) {
-  //       for (let j = 0; j < customerSelected.length; j++) {
-  //         if (values[i].customer === customerSelected[j]) {
-  //           console.log(j + customerSelected[j]);
-  //           console.log('teste');
-  //           console.log(keys[i]);
-  //         }
-  //       }
-  //     }
-  //   });
-  // }
-
-  // selectCustomer(customer: any) {
-  //   this.customerSelected[this.i++] = customer.customer;
-  //   this.clearCustomer();
-  //   console.log(this.customerSelected);
-  // }
 
 }
 

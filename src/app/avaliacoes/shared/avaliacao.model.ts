@@ -3,6 +3,4 @@ export interface Avaliacao {
     month: string;
     year: string;
     customers: [];
-    scale: number;
-    reason: string;
 }

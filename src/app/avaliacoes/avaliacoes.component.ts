@@ -11,7 +11,7 @@ import { Avaliacao } from './shared/avaliacao.model';
 })
 export class AvaliacoesComponent implements OnInit {
 
-  displayedColumns = ['month', 'year', 'customers', 'scale', 'reason', 'actions'];
+  displayedColumns = ['month', 'year', 'customers', 'actions'];
 
   evaluations = [];
   data = [];
@@ -20,16 +20,6 @@ export class AvaliacoesComponent implements OnInit {
     public dialog: MatDialog,
     private avaliacaoService: AvaliacaoService
   ) { }
-
-  // openDialog(evaluations = null): void {
-  //   const dialogRef = this.dialog.open(NovaAvaliacaoComponent, {
-  //     data: evaluations
-  //   });
-
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     this.refresh();
-  //   });
-  // }
 
   openDialog(avaliacao: any = null): void {
     const dialogRef = this.dialog.open(NovaAvaliacaoComponent, {
@@ -66,17 +56,5 @@ export class AvaliacoesComponent implements OnInit {
     });
   }
 
-  // edit(objCustomer: any) {
-  //   const dialogRef = this.dialog.open(NovaAvaliacaoComponent, {
-  //     // data: objCustomer
-  //   });
-  //   dialogRef.componentInstance.data = objCustomer;
-  //   // this.avaliacaoService.put(objCustomer.id, objCustomer.month, objCustomer.year, objCustomer.scale, objCustomer.reason, objCustomer.customer)
-  //   //   .subscribe(data => {
-  //   // });
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     this.refresh();
-  //   });
-  // }
 
 }

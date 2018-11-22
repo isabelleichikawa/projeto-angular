@@ -39,20 +39,12 @@
 
       <mat-list role="list" *ngIf="existAnswers">
         <mat-list-item role="listitem" *ngFor="let customer of customersFiltered">
-          <p mat-line>{{customer.customer}}</p>
-          <p mat-line>{{customer.answers[0].scale}}</p>
+          <span mat-line>{{customer.customer}}</span>
+          <span mat-line>{{customer.answers[0].scale}}</span>
           <mat-divider></mat-divider>
         </mat-list-item>
       </mat-list>
-
-      <mat-form-field class="example-full-width">
-        <input #scale matInput type="number" placeholder="Em uma escala de 0 a 10, qual a probabilidade de você recomendar nosso produto/serviço a um amigo/conhecido?"
-          min="0" max="10" formControlName="scale">
-      </mat-form-field>
-
-      <mat-form-field class="example-full-width">
-        <textarea #reason matInput placeholder="Qual é o motivo dessa nota?" formControlName="reason"></textarea>
-      </mat-form-field>
+      
     </div>
 
     <div mat-dialog-actions class="buttons">
