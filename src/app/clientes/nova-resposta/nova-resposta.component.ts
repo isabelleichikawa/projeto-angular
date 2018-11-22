@@ -45,6 +45,14 @@ export class NovaRespostaComponent implements OnInit {
 
   save() {
     const fData = this.form.value;
+    const isValidDate = this.isValidDate(fData.date, this.data);
+    if (!fData.scale || !fData.date || !fData.reason || !isValidDate) {
+      console.log(!fData.scale);
+      console.log(!isValidDate);
+      console.log('não foi');
+      return;
+    }
+    console.log('foi');
     const category = fData.scale <= 6 ? 'Detrator' : fData.scale <= 8 ? 'Neutro' : 'Promotor';
     const answers = this.data.answers || [];
     answers.push({ date: fData.date.toISOString(), category: category, scale: fData.scale, reason: fData.reason });
@@ -62,6 +70,20 @@ export class NovaRespostaComponent implements OnInit {
       .subscribe(data => {
         this.dialogRef.close(true);
       });
+  }
+
+  isValidDate(date, customer: any) {
+    if (!customer.answers)
+      return true;
+    const month = moment(date).month();
+    const year = moment(date).year();
+    for (let j = 0; j < customer.answers.length; j++) {
+      const answerMonth = moment(customer.answers[j].date).month();
+      const answerYear = moment(customer.answers[j].date).year();
+      if (month === answerMonth && year === answerYear)
+        return false;
+    }
+    return true;
   }
 
 }
