@@ -2,8 +2,9 @@ import { Cliente } from 'src/app/clientes/shared/cliente.model';
 
 export interface Avaliacao {
     id: string;
-    month: string;
-    year: string;
+    month: number;
+    monthFormated: string;
+    year: number;
     customers: Cliente[];
     customersFormated: string;
     nps: number;

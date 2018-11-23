@@ -29,7 +29,7 @@
       <p *ngIf="!existAnswers">Não existem respostas para esta data!</p>
 
       <mat-list role="list" *ngIf="existAnswers">
-        <mat-list-item role="listitem" *ngFor="let customer of customersFiltered">
+        <mat-list-item #customers role="listitem" *ngFor="let customer of customersFiltered">
           <span mat-line>{{customer.customer}}</span>
           <span mat-line>{{customer.answers[0].scale}}</span>
           <mat-divider></mat-divider>

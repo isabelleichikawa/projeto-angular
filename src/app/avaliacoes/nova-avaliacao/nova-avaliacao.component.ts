@@ -34,8 +34,23 @@ export class NovaAvaliacaoComponent implements OnInit {
   monthSelected: number;
   yearSelected: number;
   existAnswers = false;
-  validDate = true;
+  validDate: any;
   colorNps = '';
+
+  months = [
+    'Janeiro',
+    'Fevereiro',
+    'Março',
+    'Abril',
+    'Maio',
+    'Junho',
+    'Julho',
+    'Agosto',
+    'Setembro',
+    'Outubro',
+    'Novembro',
+    'Dezembro'
+  ];
 
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
@@ -64,24 +79,29 @@ export class NovaAvaliacaoComponent implements OnInit {
 
   ngOnInit() {
     this.listCustomers();
-    if (this.data) {
-      this.form.patchValue(this.data);
-    }
     this.filteredOptions = this.myControl.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filter(value))
       );
+    // console.log(this.data);
+
   }
 
   save() {
     const fData = this.form.value;
-    this.isValidDate(fData.month, fData.year);
-    if (!fData.month || !fData.year) {
+    this.validDate = this.isValidDate(fData.month, fData.year);
+    if (!fData.month || !fData.year || !this.validDate) {
+      if (!this.existAnswers) {
+        this.snackBar.open('Não existem respostas para essa data!', 'Ok', {
+          duration: 2500,
+        });
+      }
       return null;
     }
     const avaliacao = {
       month: fData.month,
+      monthFormated: this.months[fData.month],
       year: fData.year,
       customers: this.customersFiltered,
       nps: this.calcNps,
@@ -102,6 +122,7 @@ export class NovaAvaliacaoComponent implements OnInit {
 
   listCustomers() {
     this.clienteService.get().subscribe(result => {
+
       const keys = Object.keys(result);
       const values = Object.values(result);
       for (let i = 0; i < keys.length; i++) {
@@ -110,6 +131,12 @@ export class NovaAvaliacaoComponent implements OnInit {
         // console.log(this.customersList);
       }
       this.form.controls.customers.reset();
+      if (this.data) {
+        this.form.patchValue(this.data);
+        this.monthSelected = this.data.month;
+        this.yearSelected = this.data.year;
+        this.checkAnswers();
+      }
     });
   }
 
@@ -164,31 +191,19 @@ export class NovaAvaliacaoComponent implements OnInit {
 
   isValidDate(monthSelected, yearSelected) {
     this.dataEvaluations = [];
+    if (this.data.month === monthSelected && this.data.year === yearSelected)
+    return true;
     this.avaliacaoService.get().subscribe(result => {
-      const keys = Object.keys(result);
       const values = Object.values(result);
-      for (let i = 0; i < keys.length; i++) {
-        const dados = {
-          id: keys[i],
-          customersFormated: '',
-          ...values[i]
-        };
-        const answers = dados.customers[i].answers;
-        for (let j = 0; j < answers.length; j++) {
-          const monthEvaluation = moment(answers[j].date).month();
-          const yearEvaluation = moment(answers[j].date).year();
-          if (monthEvaluation === monthSelected && yearEvaluation === yearSelected) {
-            // console.log('existe avaliação correspondente a essa data');
-            this.snackBar.open('Já existe avaliação correspondente a essa data!', 'Ok', {
-              duration: 2500,
-            });
-            this.validDate = false;
-          }
+      for (let i = 0; i < values.length; i++) {
+        if (values[i].month === monthSelected && values[i].year === yearSelected) {
+          this.snackBar.open('Já existe avaliação correspondente a essa data!', 'Ok', {
+            duration: 2500,
+          });
+          return false;
         }
-        dados.customersFormated = dados.customers.map(c => c.customer).join(', ');
-        this.dataEvaluations.push(dados);
       }
-      this.evaluations = this.dataEvaluations;
+      return true;
     });
   }
 
@@ -197,7 +212,6 @@ export class NovaAvaliacaoComponent implements OnInit {
     this.promoters = 0;
     this.detractors = 0;
     this.calcNps = 0;
-    // const qtdCustomersEvaluation = totalCustomers < 5 ? 1 : (totalCustomers * 20) / 100;
     const nps = 0;
     for (let i = 0; i < totalCustomers; i++) {
       if (this.customersFiltered[i].answers[0].category === 'Promotor') {
@@ -209,10 +223,6 @@ export class NovaAvaliacaoComponent implements OnInit {
       }
     }
     this.calcNps = ((this.promoters - this.detractors) / totalCustomers) * 100;
-    // console.log(this.customersFiltered);
-    // console.log('Promotores ' + this.promoters);
-    // console.log('Detratores ' + this.detractors);
-    // console.log('NPS: ' + this.calcNps);
     this.setColor();
   }
 
@@ -224,7 +234,6 @@ export class NovaAvaliacaoComponent implements OnInit {
     } else {
       this.colorNps = 'red';
     }
-    // console.log(this.colorNps);
   }
 
 }

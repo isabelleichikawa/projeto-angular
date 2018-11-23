@@ -68,7 +68,7 @@ export class AvaliacoesComponent implements OnInit {
         };
         dados.customers = dados.customers || [];
         dados.customersFormated = dados.customers.map(c => c.customer).join(', ');
-        dados.month = this.months[dados.month];
+        dados.monthFormated = this.months[dados.month];
         this.data.push(dados);
       }
       this.evaluations = this.data;
