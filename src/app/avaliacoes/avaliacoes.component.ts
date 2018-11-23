@@ -1,5 +1,5 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
-import { MatDialog, MatTable } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 import { NovaAvaliacaoComponent } from './nova-avaliacao/nova-avaliacao.component';
 import { AvaliacaoService } from './shared/avaliacao.service';
 
@@ -42,7 +42,7 @@ export class AvaliacoesComponent implements OnInit {
       if (result)
         this.refresh();
     });
-    console.log(this.evaluations);
+    // console.log(this.evaluations);
   }
 
   ngOnInit() {

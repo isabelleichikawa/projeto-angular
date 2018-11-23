@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, NgZone, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSelect } from '@angular/material';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Avaliacao } from '../shared/avaliacao.model';
@@ -23,11 +23,12 @@ export class NovaAvaliacaoComponent implements OnInit {
   customersList = [];
   customersFiltered = [];
   detailsCustomers = [];
+
   i = 0;
   monthSelected: number;
   yearSelected: number;
   existAnswers = false;
-
+  validDate = false;
 
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
@@ -146,7 +147,12 @@ export class NovaAvaliacaoComponent implements OnInit {
       }
     }
     this.existAnswers = this.customersFiltered.length > 0;
-    console.log(this.customersFiltered);
+    console.log(this.existAnswers);
+    // console.log(this.customersFiltered);
+  }
+
+  isValidDate() {
+
   }
 
 }
