@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject, ElementRef, ViewChild } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSelect } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSelect, MatSnackBar } from '@angular/material';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Avaliacao } from '../shared/avaliacao.model';
 import { AvaliacaoService } from '../shared/avaliacao.service';
@@ -47,6 +47,7 @@ export class NovaAvaliacaoComponent implements OnInit {
     public dialogRef: MatDialogRef<NovaAvaliacaoComponent>,
     private avaliacaoService: AvaliacaoService,
     private clienteService: ClienteService,
+    public snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public data: Avaliacao,
   ) {
     this.form = new FormGroup({
@@ -83,7 +84,8 @@ export class NovaAvaliacaoComponent implements OnInit {
       month: fData.month,
       year: fData.year,
       customers: this.customersFiltered,
-      nps: this.calcNps
+      nps: this.calcNps,
+      colorNPS: this.colorNps
     };
     if (this.data === null) {
       this.avaliacaoService.post(avaliacao)
@@ -176,7 +178,10 @@ export class NovaAvaliacaoComponent implements OnInit {
           const monthEvaluation = moment(answers[j].date).month();
           const yearEvaluation = moment(answers[j].date).year();
           if (monthEvaluation === monthSelected && yearEvaluation === yearSelected) {
-            console.log('existe avaliação correspondente a essa data');
+            // console.log('existe avaliação correspondente a essa data');
+            this.snackBar.open('Já existe avaliação correspondente a essa data!', 'Ok', {
+              duration: 2500,
+            });
             this.validDate = false;
           }
         }
@@ -204,10 +209,10 @@ export class NovaAvaliacaoComponent implements OnInit {
       }
     }
     this.calcNps = ((this.promoters - this.detractors) / totalCustomers) * 100;
-    console.log(this.customersFiltered);
-    console.log('Promotores ' + this.promoters);
-    console.log('Detratores ' + this.detractors);
-    console.log('NPS: ' + this.calcNps);
+    // console.log(this.customersFiltered);
+    // console.log('Promotores ' + this.promoters);
+    // console.log('Detratores ' + this.detractors);
+    // console.log('NPS: ' + this.calcNps);
     this.setColor();
   }
 
@@ -219,7 +224,7 @@ export class NovaAvaliacaoComponent implements OnInit {
     } else {
       this.colorNps = 'red';
     }
-    console.log(this.colorNps);
+    // console.log(this.colorNps);
   }
 
 }

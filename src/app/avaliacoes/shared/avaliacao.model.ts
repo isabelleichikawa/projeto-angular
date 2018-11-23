@@ -7,4 +7,5 @@ export interface Avaliacao {
     customers: Cliente[];
     customersFormated: string;
     nps: number;
+    colorNPS: string;
 }

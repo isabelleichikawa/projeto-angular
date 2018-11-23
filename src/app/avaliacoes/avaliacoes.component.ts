@@ -38,13 +38,13 @@ export class AvaliacoesComponent implements OnInit {
   ) { }
 
   openDialog(avaliacao: any = null): void {
+    console.log(avaliacao);
     const dialogRef = this.dialog.open(NovaAvaliacaoComponent);
     dialogRef.componentInstance.data = avaliacao;
     dialogRef.afterClosed().subscribe(result => {
       if (result)
         this.refresh();
     });
-    // console.log(this.evaluations);
   }
 
   ngOnInit() {
@@ -72,6 +72,7 @@ export class AvaliacoesComponent implements OnInit {
         this.data.push(dados);
       }
       this.evaluations = this.data;
+      console.log(this.evaluations);
     });
   }
 
@@ -80,6 +81,5 @@ export class AvaliacoesComponent implements OnInit {
       this.refresh();
     });
   }
-
 
 }

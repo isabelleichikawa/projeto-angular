@@ -55,7 +55,7 @@ export class ClientesComponent implements OnInit {
         return;
       const keys = Object.keys(result);
       const values = Object.values(result);
-      console.log(Object.values(result));
+      // console.log(Object.values(result));
       for (let i = 0; i < keys.length; i++) {
         if (values[i].date)
           values[i].dateFormated = moment(values[i].date.toString()).format('DD/MM/YYYY');
