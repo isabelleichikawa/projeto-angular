@@ -36,6 +36,10 @@
         </mat-list-item>
       </mat-list>
 
+      <mat-form-field class="example-full-width" *ngIf="existAnswers">
+        <input #nps matInput value="NPS: {{calcNps}}" readonly="true" [ngStyle]="{'color': colorNps}">
+      </mat-form-field>
+
     </div>
 
     <div mat-dialog-actions class="buttons">

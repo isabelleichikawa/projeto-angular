@@ -18,6 +18,7 @@ export class NovaAvaliacaoComponent implements OnInit {
   @ViewChild('month') month: MatSelect;
   @ViewChild('year') year: MatSelect;
   @ViewChild('customers') customers: ElementRef;
+  @ViewChild('nps') nps: ElementRef;
 
   toppings = new FormControl();
   customersList = [];
@@ -26,11 +27,15 @@ export class NovaAvaliacaoComponent implements OnInit {
   evaluations = [];
   dataEvaluations = [];
 
+  calcNps = 0;
+  promoters = 0;
+  detractors = 0;
   i = 0;
   monthSelected: number;
   yearSelected: number;
   existAnswers = false;
   validDate = true;
+  colorNps = '';
 
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
@@ -47,7 +52,8 @@ export class NovaAvaliacaoComponent implements OnInit {
     this.form = new FormGroup({
       month: new FormControl(null),
       year: new FormControl(null),
-      customers: new FormControl(null)
+      customers: new FormControl(null),
+      nps: new FormControl(null)
     });
   }
 
@@ -73,11 +79,11 @@ export class NovaAvaliacaoComponent implements OnInit {
     if (!fData.month || !fData.year) {
       return null;
     }
-
     const avaliacao = {
       month: fData.month,
       year: fData.year,
-      customers: this.customersFiltered
+      customers: this.customersFiltered,
+      nps: this.calcNps
     };
     if (this.data === null) {
       this.avaliacaoService.post(avaliacao)
@@ -150,7 +156,8 @@ export class NovaAvaliacaoComponent implements OnInit {
       }
     }
     this.existAnswers = this.customersFiltered.length > 0;
-    console.log(this.existAnswers);
+    this.calcNPS();
+    // console.log(this.existAnswers);
   }
 
   isValidDate(monthSelected, yearSelected) {
@@ -173,14 +180,46 @@ export class NovaAvaliacaoComponent implements OnInit {
             this.validDate = false;
           }
         }
-        console.log(answers);
         dados.customersFormated = dados.customers.map(c => c.customer).join(', ');
         this.dataEvaluations.push(dados);
       }
       this.evaluations = this.dataEvaluations;
-      console.log(this.validDate);
-      // console.log(this.evaluations);
     });
+  }
+
+  calcNPS() {
+    const totalCustomers = this.customersFiltered.length;
+    this.promoters = 0;
+    this.detractors = 0;
+    this.calcNps = 0;
+    // const qtdCustomersEvaluation = totalCustomers < 5 ? 1 : (totalCustomers * 20) / 100;
+    const nps = 0;
+    for (let i = 0; i < totalCustomers; i++) {
+      if (this.customersFiltered[i].answers[0].category === 'Promotor') {
+        this.promoters++;
+      } else if (this.customersFiltered[i].answers[0].category === 'Detrator') {
+        this.detractors++;
+      } else {
+        continue;
+      }
+    }
+    this.calcNps = ((this.promoters - this.detractors) / totalCustomers) * 100;
+    console.log(this.customersFiltered);
+    console.log('Promotores ' + this.promoters);
+    console.log('Detratores ' + this.detractors);
+    console.log('NPS: ' + this.calcNps);
+    this.setColor();
+  }
+
+  setColor() {
+    if (this.calcNps >= 80) {
+      this.colorNps = 'green';
+    } else if (this.calcNps < 80 && this.calcNps >= 60) {
+      this.colorNps = 'yellow';
+    } else {
+      this.colorNps = 'red';
+    }
+    console.log(this.colorNps);
   }
 
 }

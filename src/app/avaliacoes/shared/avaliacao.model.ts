@@ -6,4 +6,5 @@ export interface Avaliacao {
     year: string;
     customers: Cliente[];
     customersFormated: string;
+    nps: number;
 }

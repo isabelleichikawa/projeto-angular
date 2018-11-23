@@ -12,7 +12,7 @@ import * as moment from 'moment';
 })
 export class AvaliacoesComponent implements OnInit {
 
-  displayedColumns = ['month', 'year', 'customers', 'actions'];
+  displayedColumns = ['month', 'year', 'customers', 'nps', 'actions'];
 
   evaluations = [];
   data = [];
@@ -44,8 +44,7 @@ export class AvaliacoesComponent implements OnInit {
       if (result)
         this.refresh();
     });
-    console.log(this.evaluations);
-
+    // console.log(this.evaluations);
   }
 
   ngOnInit() {
