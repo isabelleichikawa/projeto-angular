@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { Component, OnInit, ChangeDetectorRef, ViewChild } from '@angular/core';
+import { MatDialog, MatTable } from '@angular/material';
 import { NovaAvaliacaoComponent } from './nova-avaliacao/nova-avaliacao.component';
 import { AvaliacaoService } from './shared/avaliacao.service';
+import { Avaliacao } from './shared/avaliacao.model';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-avaliacoes',
@@ -42,7 +44,8 @@ export class AvaliacoesComponent implements OnInit {
       if (result)
         this.refresh();
     });
-    // console.log(this.evaluations);
+    console.log(this.evaluations);
+
   }
 
   ngOnInit() {
@@ -53,6 +56,9 @@ export class AvaliacoesComponent implements OnInit {
     this.evaluations = [];
     this.data = [];
     this.avaliacaoService.get().subscribe(result => {
+      // this.customers = result
+      if (!result)
+      return;
       const keys = Object.keys(result);
       const values = Object.values(result);
       for (let i = 0; i < keys.length; i++) {
@@ -61,6 +67,7 @@ export class AvaliacoesComponent implements OnInit {
           customersFormated: '',
           ...values[i]
         };
+        dados.customers = dados.customers || [];
         dados.customersFormated = dados.customers.map(c => c.customer).join(', ');
         dados.month = this.months[dados.month];
         this.data.push(dados);

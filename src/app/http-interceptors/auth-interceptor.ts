@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const headers = req.headers
-      .set('Authorization', 'projeto-angular-7f5c2');
+      .set('Authorization', 'projeto2-7e62b');
     let url = req.url;
     if (!req.url.startsWith('http') && !req.url.includes('/assets/')) {
       const apiUrl = 'http://desafio4devs.forlogic.net/api';

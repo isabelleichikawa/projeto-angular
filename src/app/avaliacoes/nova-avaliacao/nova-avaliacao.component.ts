@@ -23,12 +23,14 @@ export class NovaAvaliacaoComponent implements OnInit {
   customersList = [];
   customersFiltered = [];
   detailsCustomers = [];
+  evaluations = [];
+  dataEvaluations = [];
 
   i = 0;
   monthSelected: number;
   yearSelected: number;
   existAnswers = false;
-  validDate = false;
+  validDate = true;
 
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
@@ -67,6 +69,7 @@ export class NovaAvaliacaoComponent implements OnInit {
 
   save() {
     const fData = this.form.value;
+    this.isValidDate(fData.month, fData.year);
     if (!fData.month || !fData.year) {
       return null;
     }
@@ -148,11 +151,36 @@ export class NovaAvaliacaoComponent implements OnInit {
     }
     this.existAnswers = this.customersFiltered.length > 0;
     console.log(this.existAnswers);
-    // console.log(this.customersFiltered);
   }
 
-  isValidDate() {
-
+  isValidDate(monthSelected, yearSelected) {
+    this.dataEvaluations = [];
+    this.avaliacaoService.get().subscribe(result => {
+      const keys = Object.keys(result);
+      const values = Object.values(result);
+      for (let i = 0; i < keys.length; i++) {
+        const dados = {
+          id: keys[i],
+          customersFormated: '',
+          ...values[i]
+        };
+        const answers = dados.customers[i].answers;
+        for (let j = 0; j < answers.length; j++) {
+          const monthEvaluation = moment(answers[j].date).month();
+          const yearEvaluation = moment(answers[j].date).year();
+          if (monthEvaluation === monthSelected && yearEvaluation === yearSelected) {
+            console.log('existe avaliação correspondente a essa data');
+            this.validDate = false;
+          }
+        }
+        console.log(answers);
+        dados.customersFormated = dados.customers.map(c => c.customer).join(', ');
+        this.dataEvaluations.push(dados);
+      }
+      this.evaluations = this.dataEvaluations;
+      console.log(this.validDate);
+      // console.log(this.evaluations);
+    });
   }
 
 }
