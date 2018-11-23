@@ -92,8 +92,13 @@ export class NovaAvaliacaoComponent implements OnInit {
     const fData = this.form.value;
     this.validDate = this.isValidDate(fData.month, fData.year);
     if (!fData.month || !fData.year || !this.validDate) {
+      console.log(this.validDate);
       if (!this.existAnswers) {
         this.snackBar.open('Não existem respostas para essa data!', 'Ok', {
+          duration: 2500,
+        });
+      } else if (!this.validDate) {
+        this.snackBar.open('Já existe uma avaliação correspondente a essa data!', 'Ok', {
           duration: 2500,
         });
       }
@@ -191,6 +196,8 @@ export class NovaAvaliacaoComponent implements OnInit {
 
   isValidDate(monthSelected, yearSelected) {
     this.dataEvaluations = [];
+    if (!this.data)
+    return false;
     if (this.data.month === monthSelected && this.data.year === yearSelected)
     return true;
     this.avaliacaoService.get().subscribe(result => {
