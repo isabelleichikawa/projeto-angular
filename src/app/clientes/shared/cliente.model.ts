@@ -7,3 +7,4 @@ export interface Cliente {
     category: string;
     answers: any[];
 }
+
